@@ -1,1 +1,4 @@
+mysql-connector-python==8.0.17
 pkg-resources==0.0.0
+protobuf==3.9.0
+six==1.12.0
