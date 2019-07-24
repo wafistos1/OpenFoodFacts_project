@@ -5,7 +5,7 @@ from mysql.connector import errorcode
 
 # Creation a connexion to database
 try:
-    connexion = mysql.connector.connect(host='127.0.0.1', user='root', passwd='')
+    connexion = mysql.connector.connect(host='127.0.0.1', user='root', passwd='', database='Food')
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
@@ -16,22 +16,6 @@ except mysql.connector.Error as err:
    
 my_cursor = connexion.cursor()
 
-# Create database 'Food'
-DB_NAME = 'Food'
-
-# Create tables
-TABLES = {}
-TABLES['Product'] = (
-
-)
-TABLES['Category'] = (
-
-)
-TABLES['Store'] = (
-
-)
-
-my_cursor = connexion.cursor()
 json_data = None
 
 def upload_data():
