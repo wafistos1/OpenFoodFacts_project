@@ -18,12 +18,13 @@ my_cursor = connexion.cursor()
 
 json_data = None
 
-def upload_data():
+def upload_data(category, page):
     api_search = 'https://world.openfoodfacts.org/cgi/search.pl?/get'
     payload = {'search_terms': '',
            'json': 1,
            'page_size': 10,
-           'page': 1
+           'page': page,
+           'categories': category
           }
     json_data = requests.get(api_search, params=payload).json()
     #taille = len(json_data['products'])
