@@ -5,7 +5,7 @@ from mysql.connector import errorcode
 
 # Creation a connexion to database
 try:
-    connexion = mysql.connector.connect(host='127.0.0.1', user='root', passwd='', database='Food')
+    connexion = mysql.connector.connect(host='127.0.0.1', user='root', passwd='')
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")

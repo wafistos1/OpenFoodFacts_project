@@ -1,4 +1,4 @@
-import mysql.connector
+import mysql.connector 
 from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
 

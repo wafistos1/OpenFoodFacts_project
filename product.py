@@ -18,7 +18,6 @@ class Product:
         self.cursor.execute(query, (index, ))
         i = 1
         for name in self.cursor:
-            
             print(f"{i}-{name}")
             i += 1
         
