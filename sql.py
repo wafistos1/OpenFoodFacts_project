@@ -40,27 +40,29 @@ TABLES['Favorite'] = (
 
 
 # Function that creates a database if it does not exist 
-def data_init():
-    def create_database(my_cursor):
-        try:
-            my_cursor.execute(
-                "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(DB_NAME))
-        except mysql.connector.Error as err:
-            print("Failed creating database: {}".format(err))
-            exit(1)
+def create_database(my_cursor):
+    try:
+        my_cursor.execute(
+            "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(DB_NAME))
+    except mysql.connector.Error as err:
+        print("Failed creating database: {}".format(err))
+        exit(1)
 
+
+def data_init():
+
+    create_database(my_cursor)
     try:
         my_cursor.execute("USE {}".format(DB_NAME))
     except mysql.connector.Error as err:
         print("Database {} does not exists.".format(DB_NAME))
-        if err.errno == errorcode.ER_BAD_DB_ERROR:
-            create_database(my_cursor)
-            print("Database {} created successfully.".format(DB_NAME))
-            connexion.database = DB_NAME
-        else:
-            print(err)
-            exit(1)
-
+    if err.errno == errorcode.ER_BAD_DB_ERROR:
+        create_database(my_cursor)
+        print("Database {} created successfully.".format(DB_NAME))
+        connexion.database = DB_NAME
+    else:
+        print(err)
+        exit(1)
     # Create different tables
     for table_name in TABLES:
         table_description = TABLES[table_name]

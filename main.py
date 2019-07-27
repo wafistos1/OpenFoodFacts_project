@@ -7,21 +7,21 @@ from sql import *
 
 
 def main():
-    """ main fonction for start script
+    """ main fonction for start a script
     """
     data = data_init()
 
-    print("****     Bienvenue dans le programme openfood      ****")
+    print("****   Bienvenue dans le programme openfood       ****")
     print("****   Vous voulez Choisir un element du favori?   ****")
-    print("****                     Oui / Non                 ****")
-    print("****       Vous Cherchez un nouveau produit        ****")
-    print("****      Choisissez une categorie de produit      ****")
+    print("****   Oui / Non                                   ****")
+    print("****   Vous Cherchez un nouveau produit            ****")
+    print("****   Choisissez une categorie de produit         ****")
     print("-------------------------------------------------------")
-    print("1-Boissons")
-    print("2-Produits laitiers")
-    print("3-Chocolats")
+    print("1- Boissons")
+    print("2- Produits laitiers")
+    print("3- Chocolats")
     print("-------------------------------------------------------")
-    index = input("Entrez votre choix SVP ")
+    index = input("Entrez votre choix SVP: ")
     produit = Product()
     print("-------------------------------------------------------")
     print("Veuillez patienter...")

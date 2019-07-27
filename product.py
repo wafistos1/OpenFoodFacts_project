@@ -17,7 +17,12 @@ class Product:
         )
         self.cursor.execute(query, (index, ))
         i = 1
+        list_posting = []
+        choise_product = 0
         for name in self.cursor:
-            print(f"{i}-{name}")
+            list_posting.append(name[0])
+            print(f"{i}-{list_posting[i-1]}")
             i += 1
+        choise_product = int(input("Veuillez choisir un produit SVP: "))
+        print(f"Vous avez choisie {list_posting[choise_product-1].upper()}")
         
