@@ -9,7 +9,8 @@ from sql import *
 def main():
     """ main fonction for start a script
     """
-    data = data_init()
+    # Initialisation our data (upload json file from api)
+    data_init()
 
     print("****   Bienvenue dans le programme openfood       ****")
     print("****   Vous voulez Choisir un element du favori?   ****")
@@ -21,16 +22,18 @@ def main():
     print("2- Produits laitiers")
     print("3- Chocolats")
     print("-------------------------------------------------------")
-    index = input("Entrez votre choix SVP: ")
+    index_choise = input("Entrez votre choix SVP: ")
     produit = Product()
     print("-------------------------------------------------------")
     print("Veuillez patienter...")
     print("-------------------------------------------------------")
     print("Liste des produits disponible")
     print("-------------------------------------------------------")
-    produit.get_product(index)
+    produit.get_product(index_choise)
     print("-------------------------------------------------------")
-
+    produit.search_product(index_choise)
+    print("-------------------------------------------------------")
+    print("Voulez vous continuez ou Non")
 
 if __name__ == "__main__":
     main()
