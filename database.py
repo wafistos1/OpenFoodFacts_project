@@ -22,7 +22,7 @@ def upload_data(category, page):
     api_search = 'https://world.openfoodfacts.org/cgi/search.pl?/get'
     payload = {'search_terms': '',
            'json': 1,
-           'page_size': 10,
+           'page_size': 100,
            'page': page,
            'categories': category
           }
