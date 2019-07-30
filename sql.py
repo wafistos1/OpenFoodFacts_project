@@ -1,4 +1,4 @@
-import mysql.connector 
+import mysql.connector
 from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
 
@@ -39,18 +39,17 @@ TABLES['Favorite'] = (
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
-# definition of the function that creates the database 
+# definition of the function that creates the database
 def create_database(cursor):
-        try:
-            cursor.execute(
-                "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(DB_NAME))
-        except mysql.connector.Error as err:
-            print("Failed creating database: {}".format(err))
-            exit(1)
+    try:
+        cursor.execute(
+            "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(DB_NAME))
+    except mysql.connector.Error as err:
+        print("Failed creating database: {}".format(err))
+        exit(1)
 
-# Function that creates a database if it does not exist 
+# Function that creates a database if it does not exist
 def data_init():
-    
     try:
         my_cursor.execute("USE {}".format(DB_NAME))
     except mysql.connector.Error as err:
@@ -80,9 +79,8 @@ def data_init():
     categoy_index = ('Boissons', 'Produits laitiers', 'Chocolats')
     id_cat = 1
 
-    # browse categories and insert data 
+    # browse categories and insert data
     for index in categoy_index:
-        
         # Upload json file from api
         data_for_insert = upload_data(index, 1)
 
@@ -91,7 +89,8 @@ def data_init():
 
         print(taille)
 
-        add_Product = ("INSERT INTO Product "
+        add_Product = (
+            "INSERT INTO Product "
             "(name, url, grade, id_category, store)"
             "VALUES (%s,  %s, %s, %s, %s)"
             )
@@ -101,7 +100,7 @@ def data_init():
             try:
                 store = data_for_insert['products'][i]['stores']
                 name = data_for_insert['products'][i]['product_name']
-                category = data_for_insert['products'][i]['categories']
+                # category = data_for_insert['products'][i]['categories']
                 grade = data_for_insert['products'][i]['nutrition_grades_tags'][0]
                 url = data_for_insert['products'][i]['url']
                 id_category = id_cat
@@ -114,7 +113,5 @@ def data_init():
                 my_cursor.execute(add_Product, food_data_Product )
                 connexion.commit()
         id_cat += 1
-
 #my_cursor.close()
 #connexion.close()
-
