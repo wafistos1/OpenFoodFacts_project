@@ -1,7 +1,6 @@
 """ Script to .....
 """
 from product import Product
-from category import Category
 from database import upload_data
 from sql import *
 
