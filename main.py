@@ -3,7 +3,7 @@
 from product import Product
 from category import Category
 from database import upload_data
-from sql import * 
+from sql import *
 
 
 def main():
@@ -12,7 +12,7 @@ def main():
     # Initialisation our data (upload json file from api)
     data_init()
 
-    print("****   Bienvenue dans le programme openfood       ****")
+    print("****   Bienvenue dans le programme openfood        ****")
     print("****   Vous voulez Choisir un element du favori?   ****")
     print("****   Oui / Non                                   ****")
     print("****   Vous Cherchez un nouveau produit            ****")
