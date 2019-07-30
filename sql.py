@@ -12,6 +12,7 @@ TABLES['Product'] = (
     "  `url` varchar(450) NOT NULL,"
     "  `grade` varchar(40) ,"
     "  `id_category` int(40) ,"
+    "  `store` varchar(540) ,"
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
@@ -91,8 +92,8 @@ def data_init():
         print(taille)
 
         add_Product = ("INSERT INTO Product "
-            "(name, url, grade, id_category)"
-            "VALUES (%s,  %s, %s, %s)"
+            "(name, url, grade, id_category, store)"
+            "VALUES (%s,  %s, %s, %s, %s)"
             )
 
         for i in range(taille):
@@ -109,7 +110,7 @@ def data_init():
                 continue
 
             finally:
-                food_data_Product = (name, url, grade, id_category)
+                food_data_Product = (name, url, grade, id_category, store)
                 my_cursor.execute(add_Product, food_data_Product )
                 connexion.commit()
         id_cat += 1
