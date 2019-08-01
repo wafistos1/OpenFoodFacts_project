@@ -3,12 +3,13 @@ from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
 
 DB_NAME = 'OpenFood'
+Table_exist = False
 
 TABLES = {}
 TABLES['Product'] = (
     "CREATE TABLE `Product` ("
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
-    "  `name` varchar(450) NOT NULL,"
+    "  `name` varchar(450) NOT NULL UNIQUE,"
     "  `url` varchar(450) NOT NULL,"
     "  `grade` varchar(40) ,"
     "  `id_category` int(40) ,"
@@ -22,14 +23,6 @@ TABLES['Category'] = (
     "  `name` varchar(450) NOT NULL,"
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
-
-TABLES['Store'] = (
-    "CREATE TABLE `Store` ("
-    "  `id` int(11) NOT NULL AUTO_INCREMENT,"
-    "  `name` varchar(450) NOT NULL,"
-    "  PRIMARY KEY (`id`)"
-    ") ENGINE=InnoDB")
-
 
 TABLES['Favorite'] = (
     "CREATE TABLE `Favorite` ("
@@ -66,8 +59,9 @@ def data_init():
     for table_name in TABLES:
         table_description = TABLES[table_name]
         try:
-            print("Creating table {}: ".format(table_name), end='')
+            print(f"Creating table {table_name}: ", end='')
             my_cursor.execute(table_description)
+            Table_exist is True
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
                 print("already exists.")
@@ -76,6 +70,7 @@ def data_init():
         else:
             print("OK")
 
+    # The categories of my table
     categoy_index = ('Boissons', 'Produits laitiers', 'Chocolats')
     id_cat = 1
 
@@ -90,11 +85,12 @@ def data_init():
         print(taille)
 
         add_Product = (
-            "INSERT INTO Product "
+            "INSERT IGNORE INTO Product "
             "(name, url, grade, id_category, store)"
             "VALUES (%s,  %s, %s, %s, %s)"
             )
 
+        #The loop that inserts the data into my tables
         for i in range(taille):
 
             try:

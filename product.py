@@ -5,7 +5,7 @@ from mysql.connector import errorcode
 from database import my_cursor
 
 class Product:
-    """It is the class that represents the Product table
+    """Class that represents the Product table
     """
 
     def __init__(self):
@@ -46,7 +46,7 @@ class Product:
             "ON Product.id_category = Category.id "
             "WHERE Product.grade < %s"
             "AND Category.id = %s "
-            "LIMIT 10"
+            "LIMIT 20"
             )
 
         index = self.list_posting[self.choice_product-1][1]
