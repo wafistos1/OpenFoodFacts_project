@@ -13,11 +13,11 @@ def main():
     # Initialisation our data (upload json file from api)
     data_init()
 
-    exit_script = 'Non'
-    while exit_script == 'Non':
+    exit_script = 'Oui'
+    while exit_script == 'Oui':
         print("****   Bienvenue dans le programme openfood        ****")
         print("****   Vous voulez Choisir un element du favori?   ****")
-        print("****   Oui / Non                                   ****")
+        print("****   (Oui / Non)                                   ****")
         print("****   Vous Cherchez un nouveau produit            ****")
         print("****   Choisissez une categorie de produit         ****")
         print("-------------------------------------------------------")
@@ -25,7 +25,10 @@ def main():
         print("2- Produits laitiers")
         print("3- Chocolats")
         print("-------------------------------------------------------")
-        index_choice = input("Entrez votre choix SVP: ")
+        index_choice = None
+        while index_choice not in [1, 2, 3]:
+            index_choice = int(input("Entrez votre choix SVP: "))
+
         produit = Product()
         print("-------------------------------------------------------")
         print("Veuillez patienter...")
@@ -36,9 +39,8 @@ def main():
         print("-------------------------------------------------------")
         produit.search_product(index_choice)
         print("-------------------------------------------------------")
-        print("Voulez vous continuez ou Non")
+        print("Voulez vous continuez (Oui / Non)")
         exit_script = input("Entrez votre choix: ").capitalize()
-        print(exit_script)
     print("Aurevoir")
 
 if __name__ == "__main__":
