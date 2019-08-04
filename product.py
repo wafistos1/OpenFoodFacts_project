@@ -30,6 +30,8 @@ class Product:
         for name in self.cursor:
             self.list_posting.append(name)
             print(f"{i}-{self.list_posting[i-1][0]}")
+            if i % 50 == 0 : # Display 50 products at a time 
+                input("\nAppuyer sur n'importe quel touche les suivants ")
             i += 1
         self.choice_product = int(input("Veuillez choisir un produit SVP: "))
         print("-------------------------------------------------------")
@@ -47,7 +49,6 @@ class Product:
             "WHERE Product.grade < %s"
             "AND Category.id = %s "
             "ORDER BY Product.grade"
-            "LIMIT 20"
             )
 
         index = self.list_posting[self.choice_product-1][1]
@@ -73,7 +74,7 @@ class Product:
             print("-------------------------------------------------------")
             print(f"{self.list_choice[self.choice_subs-1][1].upper()} de grade {self.list_choice[self.choice_subs-1][3].upper()} ")
             print("-------------------------------------------------------")
-            print(f"Vous trouverai ce produit dans les magazins suivants: ")
+            print(f"Vous trouverai ce produit dans les magasins suivants: ")
             print("-------------------------------------------------------")
             print(f"{self.list_choice[self.choice_subs-1][5].upper()}  ")
             print("-------------------------------------------------------")
