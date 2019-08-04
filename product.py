@@ -46,6 +46,7 @@ class Product:
             "ON Product.id_category = Category.id "
             "WHERE Product.grade < %s"
             "AND Category.id = %s "
+            "ORDER BY Product.grade"
             "LIMIT 20"
             )
 
