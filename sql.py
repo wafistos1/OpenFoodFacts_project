@@ -3,7 +3,7 @@ from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
 
 DB_NAME = 'OpenFood'
-Table_exist = False
+data_exist = False
 
 TABLES = {}
 TABLES['Product'] = (
@@ -41,19 +41,28 @@ def create_database(cursor):
         print("Failed creating database: {}".format(err))
         exit(1)
 
-# Function that creates a database if it does not exist
-def data_init():
+def check_database():
+    """Method checks if a database is created if not it creates it
+    """ 
+    global data_exist
     try:
         my_cursor.execute("USE {}".format(DB_NAME))
     except mysql.connector.Error as err:
-        print("Database {} does not exists.".format(DB_NAME))
+        print(f"Database {DB_NAME} does not exists.")
         if err.errno == errorcode.ER_BAD_DB_ERROR:
             create_database(my_cursor)
-            print("Database {} created successfully.".format(DB_NAME))
+            print(f"Database {DB_NAME} created successfully.")
             connexion.database = DB_NAME
+            data_exist = True
+            print(data_exist)
+            print('Ok')
         else:
             print(err)
             exit(1)
+
+# Function that creates a database if it does not exist
+def data_init():
+    check_database()
 
     # Create different tables
     for table_name in TABLES:
@@ -61,7 +70,6 @@ def data_init():
         try:
             print(f"Creating table {table_name}: ", end='')
             my_cursor.execute(table_description)
-            Table_exist is True
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
                 print("already exists.")
@@ -71,8 +79,10 @@ def data_init():
             print("OK")
 
     # The categories of my table
-    categoy_index = ('Boissons', 'Produits laitiers', 'Chocolats')
+    categoy_index = ('Boissons', 'Produits laitiers','Biscuits' , 'Petit-déjeuners', 'Plats préparés', 'Produits à tartiner')
     id_cat = 1
+
+
 
     # browse categories and insert data
     for index in categoy_index:
@@ -108,6 +118,22 @@ def data_init():
                 food_data_Product = (name, url, grade, id_category, store)
                 my_cursor.execute(add_Product, food_data_Product )
                 connexion.commit()
+        
         id_cat += 1
+        query2 =(
+        "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
+        )
+        data_categories = [
+            (1, "Boissons"),
+            (2, 'Produits laitiers'),
+            (3, 'Biscuits'),
+            (4, 'Petit-déjeuners'),
+            (5, 'Plats préparés'),
+            (6, 'Produits à tartiner')
+        ]
+
+        for i in data_categories:
+            my_cursor.execute(query2, i)
+
 #my_cursor.close()
 #connexion.close()

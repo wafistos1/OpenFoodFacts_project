@@ -53,22 +53,31 @@ class Product:
         self.cursor.execute(query, (index, index_category))
         i = 1 # Increamentation
         for name in self.cursor:
-            if not name:
-                print("Votre produit a le meilleur grade dans notre base de donnees")
+            if name is None:
+                continue
             else:
                 print(f"{i}-{name[1]} avec grade: {name[3].upper()}")
                 self.list_choice.append(name)
                 i += 1
 
-        # Boucle for choice user
-        print("-------------------------------------------------------")
-        self.choice_subs = int(input("Entrez le numero de votre Produit substitue: "))
-        print("-------------------------------------------------------")
-        print("Vous produit substitue est : ")
-        print("-------------------------------------------------------")
-        print(f"{self.list_choice[self.choice_subs-1][1].upper()} de grade {self.list_choice[self.choice_subs-1][3].upper()} ")
-        print("-------------------------------------------------------")
-        print(f"Vous trouverai ce produit dans les magazins suivants: ")
-        print("-------------------------------------------------------")
-        print(f"{self.list_choice[self.choice_subs-1][5].upper()}  ")
-        print("-------------------------------------------------------")
+        if self.list_choice == []:
+            print('Votre produit a le meilleur grade dans notre base de donnees!!')
+        
+        else:
+            # Boucle for choice user
+            print("-------------------------------------------------------")
+            self.choice_subs = int(input("Entrez le numero de votre Produit substitue: "))
+            print("-------------------------------------------------------")
+            print("Vous produit substitue est : ")
+            print("-------------------------------------------------------")
+            print(f"{self.list_choice[self.choice_subs-1][1].upper()} de grade {self.list_choice[self.choice_subs-1][3].upper()} ")
+            print("-------------------------------------------------------")
+            print(f"Vous trouverai ce produit dans les magazins suivants: ")
+            print("-------------------------------------------------------")
+            print(f"{self.list_choice[self.choice_subs-1][5].upper()}  ")
+            print("-------------------------------------------------------")
+
+        def update_data(self):
+            """Method uplaod new data if exist
+            """
+            pass
