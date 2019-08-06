@@ -26,14 +26,13 @@ class Product:
             )
 
         self.cursor.execute(query, (index, ))
-        i = 1
 
-        for name in self.cursor:
+        for i, name in enumerate (self.cursor):
             self.list_posting.append(name)
-            print(f"{i}-{self.list_posting[i-1][0]}")
-            if i % 50 == 0 : # Display 50 products at a time 
+            print(f"{i+1}-{self.list_posting[i-1][0]}")
+            if i % 50 == 0 and i != 0: # Display 50 products at a time
                 input("\nAppuyer sur n'importe quel touche les suivants ")
-            i += 1
+    
         self.choice_product = int(input("Veuillez choisir un produit SVP: "))
         print("-------------------------------------------------------")
         print(f"Vous avez choisie {self.list_posting[self.choice_product-1][0].upper()} avec grade: {self.list_posting[self.choice_product-1][1].upper()}")
@@ -54,14 +53,14 @@ class Product:
 
         index = self.list_posting[self.choice_product-1][1]
         self.cursor.execute(query, (index, index_category))
-        i = 1 # Increamentation
-        for name in self.cursor:
+        # Increamentation
+        for i, name in enumerate (self.cursor):
             if name is None:
                 continue
             else:
-                print(f"{i}-{name[1]} avec grade: {name[3].upper()}")
+                print(f"{i+1}-{name[1]} avec grade: {name[3].upper()}")
                 self.list_choice.append(name)
-                i += 1
+                
 
         if self.list_choice == []:
             print('Votre produit a le meilleur grade dans notre base de donnees!!')
@@ -85,9 +84,10 @@ class Product:
             print("---------")
             print(f"{self.list_choice[self.choice_subs-1][2]}")
             print("-------------------------------------------------------")
-            print("Voulez vous sauvgarde ce produit? (Oui/Non)")
-            reponse = str(input())
-            if reponse == 'Oui':
+            if self.list_choice == []: # If our choice as the best grade
+
+                self.list_favorite.append(self.list_posting[self.choice_product])
+            else:
                 self.list_favorite.append(self.list_choice[self.choice_subs-1])
                 self.list_favorite.append(self.list_posting[self.choice_product-1])
                 

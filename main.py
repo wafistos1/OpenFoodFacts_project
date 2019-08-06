@@ -14,7 +14,7 @@ def main():
     print(data_exist)
     
     # Initialisation our data (upload json file from api)
-    if data_exist == True:
+    if data_exist == False:
         data_init()
         
 
@@ -25,8 +25,17 @@ def main():
         print("****   Bienvenue dans le programme openfood        ****")
         print("-------------------------------------------------------")
         print("-------------------------------------------------------")
-        print("****   Vous voulez Choisir un element du favori?   ****")
+        print("****   Vous voulez afficher vos favoris?   ****")
         print("****   (Oui / Non)                                 ****")
+        favorite_choice = str(input().capitalize())
+        if favorite_choice == 'Oui':
+            favorite1 = Favorite()
+            favorite1.get_all()
+        print(" Taper A pour sortir ou Enter pour continuer")
+        continue_choice = str(input().capitalize())
+        if continue_choice == 'A':
+            break
+
         print("-------------------------------------------------------")
         print("****   Vous Cherchez un nouveau produit            ****")
         print("****   Choisissez une categorie de produit         ****")
@@ -55,14 +64,18 @@ def main():
         print("-------------------------------------------------------")
         produit.search_product(index_choice)
         print("-------------------------------------------------------")
-        print(produit.list_favorite)
-        favorite = Favorite()
-        favorite.insert_data(
-            produit.list_favorite[1][0], 
-            produit.list_favorite[0][1],
-            produit.list_favorite[0][2], 
-            produit.list_favorite[0][3]
-        )
+        print("Voulez vous sauvgarde ce produit? (Oui/Non)")
+        reponse = str(input())
+        if reponse == 'Oui':
+            favorite = Favorite()
+            favorite.insert_data(
+                produit.list_favorite[1][0], 
+                produit.list_favorite[0][1],
+                produit.list_favorite[0][2], 
+                produit.list_favorite[0][3]
+            )
+        else:
+            produit.list_favorite.clear()
         print("-------------------------------------------------------")
         print("Voulez vous continuez (Oui / Non)")
         exit_script = input("Entrez votre choix: ").capitalize()

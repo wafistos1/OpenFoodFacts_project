@@ -22,8 +22,12 @@ class Favorite:
         )   
 
         
-        my_cursor.execute(add_favorite, data_field)
+        self.cursor.execute(add_favorite, data_field)
         connexion.commit()
 
     def get_all(self):
-            pass
+
+        self.cursor.execute("SELECT * FROM Favorite" )
+        for i, name in enumerate (self.cursor):
+            print(f"{i+1}-{name[1].upper()} son substitu est: {name[2].upper()} de grade {name[4].upper()}" )
+        connexion.commit()
