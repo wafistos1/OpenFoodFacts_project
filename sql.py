@@ -3,7 +3,7 @@ from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
 
 DB_NAME = 'OpenFood'
-data_exist = False
+data_exist = True
 
 TABLES = {}
 TABLES['Product'] = (
@@ -26,9 +26,11 @@ TABLES['Category'] = (
 
 TABLES['Favorite'] = (
     "CREATE TABLE `Favorite` ("
-    "  `id` int(11) NOT NULL,"
+    "  `id` int(11) NOT NULL AUTO_INCREMENT,"
     "   `product` varchar(450) NOT NULL,"
     "   `substitute` varchar(450) NOT NULL,"
+    "   `lien` varchar(450) NOT NULL,"
+    "   `grade` varchar(4) NOT NULL,"
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 

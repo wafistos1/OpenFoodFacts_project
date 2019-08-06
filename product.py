@@ -14,6 +14,7 @@ class Product:
         self.choice_subs = 0
         self.list_posting = []
         self.list_choice = []
+        self.list_favorite = []
 
 
     def get_product(self, index):
@@ -72,14 +73,27 @@ class Product:
             print("-------------------------------------------------------")
             print("Vous produit substitue est : ")
             print("-------------------------------------------------------")
-            print(f"{self.list_choice[self.choice_subs-1][1].upper()} de grade {self.list_choice[self.choice_subs-1][3].upper()} ")
+            print(f"{self.list_choice[self.choice_subs-1][1].upper()}")
+            print(" De grade")
+            print( f"{self.list_choice[self.choice_subs-1][3].upper()} ")
             print("-------------------------------------------------------")
             print(f"Vous trouverai ce produit dans les magasins suivants: ")
             print("-------------------------------------------------------")
             print(f"{self.list_choice[self.choice_subs-1][5].upper()}  ")
             print("-------------------------------------------------------")
+            print("Lien Url")
+            print("---------")
+            print(f"{self.list_choice[self.choice_subs-1][2]}")
+            print("-------------------------------------------------------")
+            print("Voulez vous sauvgarde ce produit? (Oui/Non)")
+            reponse = str(input())
+            if reponse == 'Oui':
+                self.list_favorite.append(self.list_choice[self.choice_subs-1])
+                self.list_favorite.append(self.list_posting[self.choice_product-1])
+                
+            
 
-        def update_data(self):
+    def update_data(self):
             """Method uplaod new data if exist
             """
             pass
