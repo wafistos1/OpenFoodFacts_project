@@ -27,6 +27,7 @@ class Product:
 
         self.cursor.execute(query, (index, ))
 
+
         for i, name in enumerate (self.cursor):
             self.list_posting.append(name)
             print(f"{i+1}-{self.list_posting[i-1][0]}")
@@ -53,11 +54,10 @@ class Product:
 
         index = self.list_posting[self.choice_product-1][1]
         self.cursor.execute(query, (index, index_category))
+        
         # Increamentation
         for i, name in enumerate (self.cursor):
-            if name is None:
-                continue
-            else:
+            if name is not None:
                 print(f"{i+1}-{name[1]} avec grade: {name[3].upper()}")
                 self.list_choice.append(name)
                 

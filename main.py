@@ -7,11 +7,9 @@ from sql import check_database, data_init, data_exist
 def main():
     """ main fonction for start a script
     """
-    check_database()
-    print(data_exist)
 
     # Initialisation our data (upload json file from api)
-    if data_exist is False:
+    if check_database():
         data_init()
     exit_script = 'Oui'
     while exit_script == 'Oui':

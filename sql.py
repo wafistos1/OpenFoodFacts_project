@@ -50,6 +50,7 @@ def check_database():
 
     try:
         my_cursor.execute(f"USE {DB_NAME}")
+        return False
     
     except mysql.connector.Error as err:
         print(f"Database {DB_NAME} does not exists.")
@@ -58,18 +59,11 @@ def check_database():
             create_database(my_cursor)
             print(f"Database {DB_NAME} created successfully.")
             connexion.database = DB_NAME
-            
-            global data_exist
-            data_exist = True
-            
-        else:
-            print(err)
-            exit(1)
+            return True
+        return False   
 
 # Function that creates a database if it does not exist
 def data_init():
-    check_database()
-
     # Create different tables
     for table_name in TABLES:
         table_description = TABLES[table_name]
