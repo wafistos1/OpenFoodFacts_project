@@ -85,15 +85,9 @@ class Product:
             print(f"{self.list_choice[self.choice_subs-1][2]}")
             print("-------------------------------------------------------")
             if self.list_choice == []: # If our choice as the best grade
-
+                # Add the selected product to the favorite lis
                 self.list_favorite.append(self.list_posting[self.choice_product])
             else:
                 self.list_favorite.append(self.list_choice[self.choice_subs-1])
                 self.list_favorite.append(self.list_posting[self.choice_product-1])
-                
-            
 
-    def update_data(self):
-            """Method uplaod new data if exist
-            """
-            pass

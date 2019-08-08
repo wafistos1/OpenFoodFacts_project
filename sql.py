@@ -3,7 +3,7 @@ from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
 
 DB_NAME = 'OpenFood'
-data_exist = True
+data_exist = False
 
 TABLES = {}
 TABLES['Product'] = (
@@ -38,26 +38,30 @@ TABLES['Favorite'] = (
 def create_database(cursor):
     try:
         cursor.execute(
-            "CREATE DATABASE {} DEFAULT CHARACTER SET 'utf8'".format(DB_NAME))
+            f"CREATE DATABASE {DB_NAME} DEFAULT CHARACTER SET 'utf8'")
+
     except mysql.connector.Error as err:
-        print("Failed creating database: {}".format(err))
+        print(f"Failed creating database: {err}")
         exit(1)
 
 def check_database():
     """Method checks if a database is created if not it creates it
     """ 
-    global data_exist
+
     try:
-        my_cursor.execute("USE {}".format(DB_NAME))
+        my_cursor.execute(f"USE {DB_NAME}")
+    
     except mysql.connector.Error as err:
         print(f"Database {DB_NAME} does not exists.")
+        
         if err.errno == errorcode.ER_BAD_DB_ERROR:
             create_database(my_cursor)
             print(f"Database {DB_NAME} created successfully.")
             connexion.database = DB_NAME
+            
+            global data_exist
             data_exist = True
-            print(data_exist)
-            print('Ok')
+            
         else:
             print(err)
             exit(1)
