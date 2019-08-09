@@ -3,6 +3,7 @@
 from product import Product
 from favori import Favorite
 from sql import check_database, data_init, data_exist
+from constants import validate_entering, yes_no
 
 def main():
     """ main fonction for start a script
@@ -22,14 +23,10 @@ def main():
         print("-------------------------------------------------------")
         print("****   Vous voulez afficher les favoris?   ****")
         print("****   (Oui / Non)                                 ****")
-        favorite_choice = str(input().capitalize())
+        favorite_choice = yes_no()
         if favorite_choice == 'Oui':
             favorite1 = Favorite()
             favorite1.get_all()
-        print("Taper A pour sortir ou autres pour continuer")
-        continue_choice = str(input().capitalize())
-        if continue_choice == 'A':
-            break
 
         print("-------------------------------------------------------")
         print("****                                               ****")
@@ -46,12 +43,7 @@ def main():
         print("                                                       ")
         print("-------------------------------------------------------")
         index_choice = None
-        while index_choice not in [1, 2, 3, 4, 5, 6]:
-            try:
-                index_choice = int(input("Entrez votre choix SVP: "))
-            except ValueError:
-                continue
-
+        index_choice = validate_entering(1, 6)
         produit = Product()
         print("-------------------------------------------------------")
         print("Veuillez patienter...")
@@ -67,7 +59,7 @@ def main():
         print("-------------------------------------------------------")
         print("Voulez vous sauvgarde ce produit? (Oui/Non)")
         print("                                                       ")
-        reponse = str(input())
+        reponse = yes_no()
         if reponse == 'Oui':
             favorite = Favorite()
             favorite.insert_data(
@@ -76,6 +68,7 @@ def main():
                 produit.list_favorite[0][2],
                 produit.list_favorite[0][3]
             )
+            print("Votre produit a ete bien enregister")
         else:
             produit.list_favorite.clear()
         print("                                                       ")
@@ -83,7 +76,7 @@ def main():
         print("                                                       ")
         print("Voulez vous continuez (Oui / Non)")
         print("                                                       ")
-        exit_script = input("Entrez votre choix: ").capitalize()
+        exit_script = yes_no()
     print("Aurevoir...")
 
 if __name__ == "__main__":

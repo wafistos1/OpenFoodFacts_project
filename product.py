@@ -3,6 +3,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 from database import my_cursor
+from constants import validate_entering
 
 class Product:
     """Class that represents the Product table
@@ -34,7 +35,7 @@ class Product:
             if i % 50 == 0 and i != 0: # Display 50 products at a time
                 input("\nAppuyer sur n'importe quel touche les suivants ")
     
-        self.choice_product = int(input("Veuillez choisir un produit SVP: "))
+        self.choice_product = validate_entering(1, len(self.list_posting))
         print("-------------------------------------------------------")
         print(f"Vous avez choisie {self.list_posting[self.choice_product-1][0].upper()} avec grade: {self.list_posting[self.choice_product-1][1].upper()}")
         print("-------------------------------------------------------")
@@ -60,6 +61,9 @@ class Product:
             if name is not None:
                 print(f"{i+1}-{name[1]} avec grade: {name[3].upper()}")
                 self.list_choice.append(name)
+                if i % 20 == 0 and i != 0:
+                    break
+
                 
 
         if self.list_choice == []:
@@ -68,21 +72,22 @@ class Product:
         else:
             # Boucle for choice user
             print("-------------------------------------------------------")
-            self.choice_subs = int(input("Entrez le numero de votre Produit substitue: "))
+            self.choice_subs = validate_entering(1, len(self.list_choice))
             print("-------------------------------------------------------")
             print("Vous produit substitue est : ")
             print("-------------------------------------------------------")
             print(f"{self.list_choice[self.choice_subs-1][1].upper()}")
-            print(" De grade")
+            print("De grade", end=' ')
             print( f"{self.list_choice[self.choice_subs-1][3].upper()} ")
             print("-------------------------------------------------------")
-            print(f"Vous trouverai ce produit dans les magasins suivants: ")
-            print("-------------------------------------------------------")
-            print(f"{self.list_choice[self.choice_subs-1][5].upper()}  ")
-            print("-------------------------------------------------------")
-            print("Lien Url")
-            print("---------")
-            print(f"{self.list_choice[self.choice_subs-1][2]}")
+            if self.list_choice[self.choice_subs-1][5] != None:
+                print(f"Vous trouverez ce produit dans les magasins suivants: ")
+                print(f"{self.list_choice[self.choice_subs-1][5].upper()}  ")
+            if self.list_choice[self.choice_subs-1][2] != None:
+                print("-------------------------------------------------------")
+                print("Lien Url")
+                print("---------")
+                print(f"{self.list_choice[self.choice_subs-1][2]}")
             print("-------------------------------------------------------")
             if self.list_choice == []: # If our choice as the best grade
                 # Add the selected product to the favorite lis

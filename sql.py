@@ -29,8 +29,8 @@ TABLES['Favorite'] = (
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
     "   `product` varchar(450) NOT NULL,"
     "   `substitute` varchar(450) NOT NULL,"
-    "   `lien` varchar(450) NOT NULL,"
-    "   `grade` varchar(4) NOT NULL,"
+    "   `lien` varchar(450) ,"
+    "   `grade` varchar(4) ,"
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
