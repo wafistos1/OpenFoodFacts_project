@@ -1,5 +1,7 @@
 # Projet5 "Utilisez les données publiques de l'OpenFoodFacts"
 <h3>C'est un programme cherche un  substitut de qualite nutritionnelle superieur a un produit  </h3>
+Programme demarre en tapant <strong>python3 main.py</strong>
+Ps Pas oublie de charger le fichier requirements.txt
 
 # Fonctionnement du programme
 <h3>Menu pricipal</h3> 
