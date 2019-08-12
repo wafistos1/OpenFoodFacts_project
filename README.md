@@ -18,7 +18,7 @@
 # Les different options du script(modification et personnalisation)  
 Utilisateur pourra si il le veut personnaliser le programme.   
 voici toutes les fonctions personalisable  
-    * Affichage (nombre de produit a afficher)de la liste des produit       dans la categorie selectionner  
+    * Affichage (nombre de produit a afficher)de la liste des produit       dans la categorie selectionner en changeant les constante           <strong>NUMBER_PRODUCT_PAGE</strong> qui se trouve dans le fichier <strong>constants.py</strong>
     *
 
 
