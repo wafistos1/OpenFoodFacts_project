@@ -1,5 +1,5 @@
 # Projet5 "Utilisez les données publiques de l'OpenFoodFacts"
-C'est un programme qui peut touver un substitut a un produit de bien moindre qualite nutritionnelle
+<h1>C'est un programme qui peut touver un substitut a un produit de bien moindre qualite nutritionnelle</h1>
 
 # Fonctionnement du script
 1-Menu pricipal:  
