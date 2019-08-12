@@ -1,70 +1,56 @@
-# Projet5 "Utilisez les données publiques de l'OpenFoodFacts"
-===
-<h3>C'est un programme qui cherche un  substitut de qualite nutritionnelle superieur a un produit  </h3>
-Programme demarre en tapant <strong>python3 main.py</strong>  
-Ps Pas oublie de charger le fichier requirements.txt
-
-# Fonctionnement du programme
-<h3>Menu pricipal</h3> 
-    -Utilisateur doit selectionner un choix parmi le menu en tapant le nombre corespondant  
-<h3>Menu Afficher Favoris</h3> 
-    -Le programme affiche tous les favoris qui sont dans la base de donnes  
-<h3>Menu Rechercher un produit</h3>
-    -Le programme affiche un menu des categories qui existes et demande a l'utilisateur de faire un choix
-    -Le programme affiche tous les produits qui sont dans la base de donnes relative a la gategorie choisi preablement, apres le programme demande a l'utilisateur de faire un choix du produit qui veut en suite le programme affiche le substitut du produit choisi
-    et enfin le programme demande a l'utilisateur si il veut sauvgarder
-    le produit substitut dans la base de donnees  
-<h3>Menu Update ma base de donnees</h3> 
-    -Le programme fait une mise a jours de la base de donnees en faisant un check a API OpenFactFood  
-<h3>Menu Quitter</h3>  
-    -L'utilisateur choisi de quitter le programme  
-
-
-
 
 #
 # Projet5 "Utilisez les données publiques de l'OpenFoodFacts"
 _
 
 
-<h3>C'est un programme qui cherche un  substitut de qualite nutritionnelle
-superieur a un produit  </h3>
+#### C'est un programme qui cherche un  substitut de qualite nutritionnelle
+superieur a un produit
 
 ## Pour commencer
 
-<h3>Menu pricipal</h3> 
-    -Utilisateur doit selectionner un choix parmi le menu en tapant le nombre corespondant  
-<h3>Menu Afficher Favoris</h3> 
-    -Le programme affiche tous les favoris qui sont dans la base de donnes  
-<h3>Menu Rechercher un produit</h3>
-    -Le programme affiche un menu des categories qui existes et demande a l'utilisateur de faire un choix
-    -Le programme affiche tous les produits qui sont dans la base de donnes relative a la gategorie choisi preablement, apres le programme demande a l'utilisateur de faire un choix du produit qui veut en suite le programme affiche le substitut du produit choisi
+### Menu pricipal
+
+    * Utilisateur doit selectionner un choix parmi le menu en tapant le nombre corespondant  
+
+#### Menu Afficher Favoris 
+
+    * Le programme affiche tous les favoris qui sont dans la base de donnes
+
+#### Menu Rechercher un produit
+
+    * Le programme affiche un menu des categories qui existes et demande a l'utilisateur de faire un choix
+    * Le programme affiche tous les produits qui sont dans la base de donnes relative a la gategorie choisi preablement, apres le programme demande a l'utilisateur de faire un choix du produit qui veut en suite le programme affiche le substitut du produit choisi
     et enfin le programme demande a l'utilisateur si il veut sauvgarder
     le produit substitut dans la base de donnees  
-<h3>Menu Update ma base de donnees</h3> 
-    -Le programme fait une mise a jours de la base de donnees en faisant un check a API OpenFactFood  
-<h3>Menu Quitter</h3>  
-    -L'utilisateur choisi de quitter le programme  
+
+#### Menu Update ma base de donnees
+
+    * Le programme fait une mise a jours de la base de donnees en faisant un check a API OpenFactFood  
+
+#### Menu Quitter
+    * L'utilisateur choisi de quitter le programme  
 
 ### Pré-requis
 
 Ce qu'il est requis pour commencer avec votre projet...
 
-- Python3 installer
-- Installer les dependances avec fichier <strong>requirements.txt</strong>
-
+- Installer Python3 
+- Installer les dependances avec le fichier `requirements.txt`
 
 ## Démarrage
 
-Dites comment faire pour lancer votre projet
+Pour lancer votre projet
  
-- Taper dans un terminal <strong>python3 main.py</strong> 
+- Taper dans un terminal `python3 main.py` 
 
-# Les different options du script(modification et personnalisation)
-  
--Utilisateur pourra si il le veut personnaliser le programme.   
+## Les different options du script(modification et personnalisation)
+
+- Utilisateur pourra si il le veut personnaliser le programme.   
 voici toutes les fonctionnalites personnalisable  
-    * Affichage (nombre de produit a affiche)de la liste des produits       dans la categorie selectionnee en changeant la constante           <strong>NUMBER_PRODUCT_PAGE</strong> qui se trouve dans le fichier <strong>constants.py</strong>
+    * Affichage (nombre de produit a affiche)de la liste des produits       dans la categorie selectionnee en changeant la constante           
+    `NUMBER_PRODUCT_PAGE`qui se trouve dans le fichier 
+    `constants.py`
     
 
 ## Fabriqué avec
