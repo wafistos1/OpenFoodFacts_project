@@ -2,7 +2,7 @@
 """
 import os
 from sql import check_database, data_init
-from constants import validate_entering, yes_no, menu_main, menu_choice_product
+from constants import validate_entering, menu_main
 from fonctions import favorite_poster, product_poster, update_data, quitter
 def main():
     """ main fonction to start a script
@@ -16,11 +16,11 @@ def main():
         menu_main()
         index = None
         switcher = {
-        1: favorite_poster,
-        2: product_poster,
-        3: update_data,
-        4: quitter,
-        }
+            1: favorite_poster,
+            2: product_poster,
+            3: update_data,
+            4: quitter,
+            }
         index = validate_entering(1, 4)
         switcher[index]()
         if switcher[index]() == 'Oui':

@@ -5,6 +5,7 @@ from constants import DATABASE_NAME
 
 
 TABLES = {}
+#Create Products table (SQL REQUEST)
 TABLES['Product'] = (
     "CREATE TABLE `Product` ("
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
@@ -16,6 +17,7 @@ TABLES['Product'] = (
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
+#Create Category table (SQL REQUEST)
 TABLES['Category'] = (
     "CREATE TABLE `Category` ("
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
@@ -23,6 +25,7 @@ TABLES['Category'] = (
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
+#Create Favorite table (SQL REQUEST)   
 TABLES['Favorite'] = (
     "CREATE TABLE `Favorite` ("
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
@@ -46,7 +49,6 @@ def create_database(cursor):
 def check_database():
     """Method checks if a database is created if not it creates it
     """ 
-
     try:
         my_cursor.execute(f"USE {DATABASE_NAME}")
         return False
@@ -101,7 +103,6 @@ def data_init():
 
         #The loop that inserts the data into my tables
         for i in range(taille):
-
             try:
                 store = data_for_insert['products'][i]['stores']
                 name = data_for_insert['products'][i]['product_name']
@@ -119,6 +120,7 @@ def data_init():
                 connexion.commit()
         
         id_cat += 1
+        #Insert 6 categories in my category table(manually)
         query2 =(
         "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
         )
@@ -134,5 +136,3 @@ def data_init():
         for i in data_categories:
             my_cursor.execute(query2, i)
 
-#my_cursor.close()
-#connexion.close()

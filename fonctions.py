@@ -3,11 +3,13 @@
 import os
 from product import Product
 from favori import Favorite
-from sql import check_database, data_init
-from constants import validate_entering, yes_no, menu_main, menu_choice_product
+from sql import data_init
+from constants import validate_entering, yes_no, menu_choice_product
 
 
 def favorite_poster():
+    """function that displays favorites in the database
+    """
     os.system("clear")
     print("****                 Favoris               ****")
     print("****                                       ****")
@@ -18,6 +20,8 @@ def favorite_poster():
 
 
 def product_poster():
+    """function that displays the products of a category in the database
+    """
     os.system("clear")
     menu_choice_product()
     print("                                                       ")
@@ -33,7 +37,7 @@ def product_poster():
     produit.get_product(index_choice)
     print("                                                       ")
     print("-------------------------------------------------------")
-    os.system("clear")    
+    os.system("clear")
     print("-------------------------------------------------------")
     produit.search_product(index_choice)
     print("=======================================================")
@@ -65,12 +69,16 @@ def product_poster():
 
 
 def update_data():
+    """Update my database
+    """
     data_init()
     print("Mise a jours terminer")
+    input()
 
 
 def quitter():
+    """function to exit the program
+    """
     print('Voulez vous vraiment quitter le programme?')
     rep = yes_no()
-    if rep == "Oui":
-        return rep
+    return rep
