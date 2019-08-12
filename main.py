@@ -2,7 +2,7 @@
 """
 import os
 from sql import check_database, data_init
-from constants import validate_entering, menu_main
+from constants import validate_entering, menu_main, CLEAR
 from fonctions import favorite_poster, product_poster, update_data, quitter
 def main():
     """ main fonction to start a script
@@ -10,9 +10,19 @@ def main():
     # Initialisation our data (upload json file from api)
     if check_database():
         data_init()
+    #Check os system
+    print("Votre systeme operationnel")
+    print("1- Linux ou Mac")
+    print("2- Windows")
+    CLEAR = validate_entering(1, 2)
+    if CLEAR == 1:
+        CLEAR = 'clear'
+    else:
+        CLEAR = 'cls'
+
     #Main loop
     while True:
-        os.system("clear")
+        os.system(CLEAR)
         menu_main()
         index = None
         switcher = {

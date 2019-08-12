@@ -6,6 +6,7 @@ USER = 'root'
 PASSWORD = ''
 NUMBER_PRODUCT_PAGE = 50
 NUMBER_VAFORITE_PAGE = 20
+CLEAR = 'clear'
 
 
 def validate_entering(start, end):
@@ -49,8 +50,8 @@ def menu_main():
     print("****                                               ****")
     print("-------------------------------------------------------")
     print("-------------------------------------------------------")
-    print("1- Afficher Favoris")
-    print("2- Rechercher un produit")
+    print("1- Afficher Favoris( Retrouver mes aliments substitués)")
+    print("2- Rechercher un produit( Quel aliment souhaitez-vous remplacer?)")
     print("3- Update ma base de donnees")
     print("4- Quitter")
     print("-------------------------------------------------------")

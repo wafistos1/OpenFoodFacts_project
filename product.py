@@ -60,14 +60,14 @@ class Product:
                 if i % NUMBER_VAFORITE_PAGE == 0 and i != 0:
                     break
         if self.list_choice == []:
-            print('Votre produit a le meilleur grade dans notre base de donnees!!')
+            print('Votre produit a le meilleur grade dans notre base de donnees')
             self.list_favorite.append(self.list_posting[self.choice_product-1])
         else:
             # Boucle for choice user
             print("-------------------------------------------------------")
             self.choice_subs = validate_entering(1, len(self.list_choice))
             print("-------------------------------------------------------")
-            print("Vous produit substitue est : ")
+            print("Vous produit substitue est: ")
             print("-------------------------------------------------------")
             print(f"{self.list_choice[self.choice_subs-1][1].upper()}")
             print("De grade", end=' ')

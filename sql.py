@@ -38,6 +38,7 @@ TABLES['Favorite'] = (
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
+
 # definition of the function that creates the database
 def create_database(cursor):
     """Function that creates the database and returns 1 if there is an error
@@ -45,10 +46,10 @@ def create_database(cursor):
     try:
         cursor.execute(
             f"CREATE DATABASE {DATABASE_NAME} DEFAULT CHARACTER SET 'utf8'")
-
     except mysql.connector.Error as err:
         print(f"Failed creating database: {err}")
         exit(1)
+
 
 def check_database():
     """Method checks if a database is created if not it creates it
@@ -64,6 +65,7 @@ def check_database():
             connexion.database = DATABASE_NAME
             return True
         return False
+
 
 # Function that creates a database if it does not exist
 def data_init():
@@ -81,7 +83,6 @@ def data_init():
                 print(err.msg)
         else:
             print("OK")
-
     # The categories of my table
     categoy_index = (
         'Boissons',
@@ -92,7 +93,6 @@ def data_init():
         'Produits à tartiner'
         )
     id_cat = 1
-
     # browse categories and insert data
     for index in categoy_index:
         # Upload json file from api
@@ -100,15 +100,12 @@ def data_init():
 
         # Insert data in Product table
         taille = len(data_for_insert['products'])
-
         print(taille)
-
         add_Product = (
             "INSERT IGNORE INTO Product "
             "(name, url, grade, id_category, store)"
             "VALUES (%s,  %s, %s, %s, %s)"
             )
-
         #The loop that inserts the data into my tables
         for i in range(taille):
             try:
@@ -117,10 +114,8 @@ def data_init():
                 grade = data_for_insert['products'][i]['nutrition_grades_tags'][0]
                 url = data_for_insert['products'][i]['url']
                 id_category = id_cat
-
             except(KeyError, TypeError):
                 continue
-
             finally:
                 food_data_Product = (name, url, grade, id_category, store)
                 my_cursor.execute(add_Product, food_data_Product)
@@ -138,6 +133,6 @@ def data_init():
             (5, 'Plats préparés'),
             (6, 'Produits à tartiner')
         ]
-
         for i in data_categories:
             my_cursor.execute(query2, i)
+

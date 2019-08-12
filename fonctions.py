@@ -4,13 +4,13 @@ import os
 from product import Product
 from favori import Favorite
 from sql import data_init
-from constants import validate_entering, yes_no, menu_choice_product
+from constants import validate_entering, yes_no, menu_choice_product, CLEAR
 
 
 def favorite_poster():
     """function that displays favorites in the database
     """
-    os.system("clear")
+    os.system(CLEAR)
     print("****                 Favoris               ****")
     print("****                                       ****")
     print("-----------------------------------------------")
@@ -22,7 +22,7 @@ def favorite_poster():
 def product_poster():
     """function that displays the products of a category in the database
     """
-    os.system("clear")
+    os.system(CLEAR)
     menu_choice_product()
     print("                                                       ")
     print("-------------------------------------------------------")
@@ -37,7 +37,7 @@ def product_poster():
     produit.get_product(index_choice)
     print("                                                       ")
     print("-------------------------------------------------------")
-    os.system("clear")
+    os.system(CLEAR)
     print("-------------------------------------------------------")
     produit.search_product(index_choice)
     print("=======================================================")
