@@ -4,32 +4,33 @@
 _
 
 
-#### C'est un programme qui cherche un  substitut de qualite nutritionnelle
-superieur a un produit
+## Ce programme interagirait avec la base Open Food Facts pour en récupérer les aliments, les comparer et proposer à l'utilisateur un substitut plus sain à l'aliment qui lui fait envie.
 
 ## Pour commencer
+    - Ce programme ce compose des elements suivants
 
 ### Menu pricipal
 
-    * Utilisateur doit selectionner un choix parmi le menu en tapant le nombre corespondant  
+    - Utilisateur doit selectionner un choix parmi le menu en tapant le nombre corespondant  
 
-#### Menu Afficher Favoris 
+### Menu Afficher Favoris 
 
-    * Le programme affiche tous les favoris qui sont dans la base de donnes
+    - Le programme affiche tous les favoris qui sont dans la base de donnes
 
-#### Menu Rechercher un produit
+### Menu Rechercher un produit
 
-    * Le programme affiche un menu des categories qui existes et demande a l'utilisateur de faire un choix
-    * Le programme affiche tous les produits qui sont dans la base de donnes relative a la gategorie choisi preablement, apres le programme demande a l'utilisateur de faire un choix du produit qui veut en suite le programme affiche le substitut du produit choisi
+    - Le programme affiche un menu des categories qui existes et demande a l'utilisateur de faire un choix
+
+    - Le programme affiche tous les produits qui sont dans la base de donnes relative a la gategorie choisi preablement, apres le programme demande a l'utilisateur de faire un choix du produit qui veut en suite le programme affiche le substitut du produit choisi
     et enfin le programme demande a l'utilisateur si il veut sauvgarder
     le produit substitut dans la base de donnees  
 
-#### Menu Update ma base de donnees
+### Menu Update ma base de donnees
 
-    * Le programme fait une mise a jours de la base de donnees en faisant un check a API OpenFactFood  
+    - Le programme fait une mise a jours de la base de donnees en faisant un check a API OpenFactFood  
 
-#### Menu Quitter
-    * L'utilisateur choisi de quitter le programme  
+### Menu Quitter
+    - L'utilisateur choisi de quitter le programme  
 
 ### Pré-requis
 
