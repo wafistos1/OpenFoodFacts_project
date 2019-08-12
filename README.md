@@ -19,11 +19,7 @@ Ps Pas oublie de charger le fichier requirements.txt
 <h3>Menu Quitter</h3>  
     -L'utilisateur choisi de quitter le programme  
 
-# Les different options du script(modification et personnalisation)  
--Utilisateur pourra si il le veut personnaliser le programme.   
-voici toutes les fonctionnalites personnalisable  
-    * Affichage (nombre de produit a affiche)de la liste des produits       dans la categorie selectionnee en changeant la constante           <strong>NUMBER_PRODUCT_PAGE</strong> qui se trouve dans le fichier <strong>constants.py</strong>
-    
+
 
 
 #
@@ -54,44 +50,36 @@ superieur a un produit  </h3>
 
 Ce qu'il est requis pour commencer avec votre projet...
 
-- Taper dans un terminal <strong>python3 main.py</strong>
-- Programme 2
-- etc...
+- Python3 installer
+- Installer les dependances avec fichier <strong>requirements.txt</strong>
 
 
 ## Démarrage
 
 Dites comment faire pour lancer votre projet
+ 
+- Taper dans un terminal <strong>python3 main.py</strong> 
+
+# Les different options du script(modification et personnalisation)
+  
+-Utilisateur pourra si il le veut personnaliser le programme.   
+voici toutes les fonctionnalites personnalisable  
+    * Affichage (nombre de produit a affiche)de la liste des produits       dans la categorie selectionnee en changeant la constante           <strong>NUMBER_PRODUCT_PAGE</strong> qui se trouve dans le fichier <strong>constants.py</strong>
+    
 
 ## Fabriqué avec
 
-Entrez les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
+Les programmes/logiciels/ressources utilisé pour développer le projet
 
-_exemples :_
-* [Materialize.css](http://materializecss.com) - Framework CSS (front-end)
-* [Atom](https://atom.io/) - Editeur de textes
 
-## Contributing
+* [mysql-connector](https://dev.mysql.com/doc/connector-python/en/) - un pilote Python autonome pour communiquer avec les serveurs MySQL
+* [Visual-Studio-code](https://code.visualstudio.com) - Editeur de textes
 
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md](https://example.org) pour savoir comment le faire.
-
-## Versions
-Listez les versions ici 
-_exemple :_
-**Dernière version stable :** 5.0
-**Dernière version :** 5.1
-Liste des versions : [Cliquer pour afficher](https://github.com/your/project-name/tags)
-_(pour le lien mettez simplement l'URL de votre projets suivi de ``/tags``)_
 
 ## Auteurs
 Listez le(s) auteur(s) du projet ici !
-* **Jhon doe** _alias_ [@outout14](https://github.com/outout14)
+* **Ouafi MAMERI** _WAFI_ [mameri.wafi@gmail.com](https://github.com/wafistos1/Projet5)
 
-Lisez la liste des [contributeurs](https://github.com/your/project/contributors) pour voir qui à aidé au projet !
 
-_(pour le lien mettez simplement l'URL de votre projet suivi de ``/contirubors``)_
-
-## License
-
-Ce projet est sous licence ``exemple: WTFTPL`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
+_(https://github.com/wafistos1/Projet5 ``/openclassrooms``)_
 
