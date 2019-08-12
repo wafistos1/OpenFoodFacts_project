@@ -3,7 +3,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 from database import my_cursor
-from constants import validate_entering
+from constants import validate_entering, NUMBER_PRODUCT_PAGE, NUMBER_VAFORITE_PAGE
 
 class Product:
     """Class that represents the Product table
@@ -31,13 +31,16 @@ class Product:
 
         for i, name in enumerate (self.cursor):
             self.list_posting.append(name)
-            print(f"{i+1}-{self.list_posting[i-1][0]}")
-            if i % 50 == 0 and i != 0: # Display 50 products at a time
-                input("\nAppuyer sur n'importe quel touche les suivants ")
+            print(f"{i+1}-{self.list_posting[i][0]}")
+            if i % NUMBER_PRODUCT_PAGE == 0 and i != 0: # Display 50 products at a time
+                key = input("\nAppuyer sur n'importe quelle touche les suivants ").capitalize()
+                if key == 'Q':
+                    break
+                
     
         self.choice_product = validate_entering(1, len(self.list_posting))
         print("-------------------------------------------------------")
-        print(f"Vous avez choisie {self.list_posting[self.choice_product-1][0].upper()} avec grade: {self.list_posting[self.choice_product-1][1].upper()}")
+        print(f"Vous avez choisie {self.list_posting[self.choice_product-1][0].upper()} avec grade: {self.list_posting[self.choice_product-2][1].upper()}")
         print("-------------------------------------------------------")
 
 
@@ -61,13 +64,14 @@ class Product:
             if name is not None:
                 print(f"{i+1}-{name[1]} avec grade: {name[3].upper()}")
                 self.list_choice.append(name)
-                if i % 20 == 0 and i != 0:
+                if i % NUMBER_VAFORITE_PAGE == 0 and i != 0:
                     break
 
                 
 
         if self.list_choice == []:
             print('Votre produit a le meilleur grade dans notre base de donnees!!')
+            self.list_favorite.append(self.list_posting[self.choice_product-1])
         
         else:
             # Boucle for choice user
@@ -79,20 +83,15 @@ class Product:
             print(f"{self.list_choice[self.choice_subs-1][1].upper()}")
             print("De grade", end=' ')
             print( f"{self.list_choice[self.choice_subs-1][3].upper()} ")
-            print("-------------------------------------------------------")
-            if self.list_choice[self.choice_subs-1][5] != None:
-                print(f"Vous trouverez ce produit dans les magasins suivants: ")
-                print(f"{self.list_choice[self.choice_subs-1][5].upper()}  ")
-            if self.list_choice[self.choice_subs-1][2] != None:
+            if self.list_choice[self.choice_subs-1][5] is not None:
                 print("-------------------------------------------------------")
-                print("Lien Url")
-                print("---------")
-                print(f"{self.list_choice[self.choice_subs-1][2]}")
+                print(f"Disponibles dans le.s magasin.s suivants: ")
+                print(f"{self.list_choice[self.choice_subs-1][5].upper()}  ")
             print("-------------------------------------------------------")
-            if self.list_choice == []: # If our choice as the best grade
-                # Add the selected product to the favorite lis
-                self.list_favorite.append(self.list_posting[self.choice_product])
-            else:
-                self.list_favorite.append(self.list_choice[self.choice_subs-1])
-                self.list_favorite.append(self.list_posting[self.choice_product-1])
+            print("Lien Url")
+            print("---------")
+            print(f"{self.list_choice[self.choice_subs-1][2]}")
+            print("-------------------------------------------------------")
+            self.list_favorite.append(self.list_choice[self.choice_subs-1])
+            self.list_favorite.append(self.list_posting[self.choice_product-1])
 

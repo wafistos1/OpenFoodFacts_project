@@ -1,9 +1,8 @@
 import mysql.connector
 from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
+from constants import DATABASE_NAME
 
-DB_NAME = 'OpenFood'
-data_exist = False
 
 TABLES = {}
 TABLES['Product'] = (
@@ -29,8 +28,8 @@ TABLES['Favorite'] = (
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
     "   `product` varchar(450) NOT NULL,"
     "   `substitute` varchar(450) NOT NULL,"
-    "   `lien` varchar(450) ,"
-    "   `grade` varchar(4) ,"
+    "   `lien` varchar(450) NOT NULL,"
+    "   `grade` varchar(4) NOT NULL,"
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
@@ -38,7 +37,7 @@ TABLES['Favorite'] = (
 def create_database(cursor):
     try:
         cursor.execute(
-            f"CREATE DATABASE {DB_NAME} DEFAULT CHARACTER SET 'utf8'")
+            f"CREATE DATABASE {DATABASE_NAME} DEFAULT CHARACTER SET 'utf8'")
 
     except mysql.connector.Error as err:
         print(f"Failed creating database: {err}")
@@ -49,16 +48,16 @@ def check_database():
     """ 
 
     try:
-        my_cursor.execute(f"USE {DB_NAME}")
+        my_cursor.execute(f"USE {DATABASE_NAME}")
         return False
     
     except mysql.connector.Error as err:
-        print(f"Database {DB_NAME} does not exists.")
+        print(f"Database {DATABASE_NAME} does not exists.")
         
         if err.errno == errorcode.ER_BAD_DB_ERROR:
             create_database(my_cursor)
-            print(f"Database {DB_NAME} created successfully.")
-            connexion.database = DB_NAME
+            print(f"Database {DATABASE_NAME} created successfully.")
+            connexion.database = DATABASE_NAME
             return True
         return False   
 
