@@ -1,4 +1,5 @@
-# Module to stock All constantes of our programme
+""" Module to stock All constantes of our programme"""
+
 DATABASE_NAME = 'OpenFood'
 HOST = '127.0.0.1'
 USER = 'root'
@@ -9,7 +10,7 @@ NUMBER_VAFORITE_PAGE = 20
 
 def validate_entering(start, end):
     """Function that verifies that the user enters an integer between
-    a defined interval  
+    a defined interval
     """
     index = None
     while True:
@@ -27,7 +28,7 @@ def validate_entering(start, end):
 
 
 def yes_no():
-    """Function that allows to check that the user enters'Oui' or'Non'. 
+    """Function that allows to check that the user enters'Oui' or'Non'
     """
     index = None
     while index not in ['Oui', 'Non']:

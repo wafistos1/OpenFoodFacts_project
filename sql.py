@@ -1,3 +1,5 @@
+"""Module that creates the database and tables
+"""
 import mysql.connector
 from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
@@ -25,7 +27,7 @@ TABLES['Category'] = (
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
-#Create Favorite table (SQL REQUEST)   
+#Create Favorite table (SQL REQUEST)
 TABLES['Favorite'] = (
     "CREATE TABLE `Favorite` ("
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
@@ -38,6 +40,8 @@ TABLES['Favorite'] = (
 
 # definition of the function that creates the database
 def create_database(cursor):
+    """Function that creates the database and returns 1 if there is an error
+    """
     try:
         cursor.execute(
             f"CREATE DATABASE {DATABASE_NAME} DEFAULT CHARACTER SET 'utf8'")
@@ -48,24 +52,23 @@ def create_database(cursor):
 
 def check_database():
     """Method checks if a database is created if not it creates it
-    """ 
+    """
     try:
         my_cursor.execute(f"USE {DATABASE_NAME}")
         return False
-    
     except mysql.connector.Error as err:
         print(f"Database {DATABASE_NAME} does not exists.")
-        
         if err.errno == errorcode.ER_BAD_DB_ERROR:
             create_database(my_cursor)
             print(f"Database {DATABASE_NAME} created successfully.")
             connexion.database = DATABASE_NAME
             return True
-        return False   
+        return False
 
 # Function that creates a database if it does not exist
 def data_init():
-    # Create different tables
+    """Function that creates the different tables
+    """
     for table_name in TABLES:
         table_description = TABLES[table_name]
         try:
@@ -80,10 +83,15 @@ def data_init():
             print("OK")
 
     # The categories of my table
-    categoy_index = ('Boissons', 'Produits laitiers','Biscuits' , 'Petit-déjeuners', 'Plats préparés', 'Produits à tartiner')
+    categoy_index = (
+        'Boissons',
+        'Produits laitiers',
+        'Biscuits',
+        'Petit-déjeuners',
+        'Plats préparés',
+        'Produits à tartiner'
+        )
     id_cat = 1
-
-
 
     # browse categories and insert data
     for index in categoy_index:
@@ -106,7 +114,6 @@ def data_init():
             try:
                 store = data_for_insert['products'][i]['stores']
                 name = data_for_insert['products'][i]['product_name']
-                # category = data_for_insert['products'][i]['categories']
                 grade = data_for_insert['products'][i]['nutrition_grades_tags'][0]
                 url = data_for_insert['products'][i]['url']
                 id_category = id_cat
@@ -116,14 +123,13 @@ def data_init():
 
             finally:
                 food_data_Product = (name, url, grade, id_category, store)
-                my_cursor.execute(add_Product, food_data_Product )
+                my_cursor.execute(add_Product, food_data_Product)
                 connexion.commit()
-        
         id_cat += 1
         #Insert 6 categories in my category table(manually)
-        query2 =(
-        "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
-        )
+        query2 = (
+            "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
+            )
         data_categories = [
             (1, "Boissons"),
             (2, 'Produits laitiers'),
@@ -135,4 +141,3 @@ def data_init():
 
         for i in data_categories:
             my_cursor.execute(query2, i)
-

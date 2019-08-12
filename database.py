@@ -4,11 +4,11 @@
 import requests
 import mysql.connector
 from mysql.connector import errorcode
-from constants import *
+from constants import HOST, USER, PASSWORD
 
-# Creation a connexion to database
+# Creation a CONNEXION to database
 try:
-    connexion = mysql.connector.connect(host=HOST, user=USER, passwd=PASSWORD)
+    CONNEXION = mysql.connector.connect(host=HOST, user=USER, passwd=PASSWORD)
 except mysql.connector.Error as err:
     if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
         print("Something is wrong with your user name or password")
@@ -17,7 +17,7 @@ except mysql.connector.Error as err:
     else:
         print(err)
 
-my_cursor = connexion.cursor(buffered=True)
+my_cursor = CONNEXION.cursor(buffered=True)
 
 json_data = None
 
