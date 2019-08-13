@@ -79,6 +79,5 @@ def update_data():
 def quitter():
     """function to exit the program
     """
-    print('Voulez vous vraiment quitter le programme?')
-    rep = yes_no()
-    return rep
+    print('Vous quitter le programme?')
+

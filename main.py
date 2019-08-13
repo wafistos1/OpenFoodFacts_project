@@ -19,7 +19,7 @@ def main():
         CLEAR = 'clear'
     else:
         CLEAR = 'cls'
-
+    
     #Main loop
     while True:
         os.system(CLEAR)
@@ -29,15 +29,14 @@ def main():
             1: favorite_poster,
             2: product_poster,
             3: update_data,
-            4: quitter,
+            4: quitter
             }
         index = validate_entering(1, 4)
         switcher[index]()
-        if switcher[index]() == 'Oui':
+        if index == 4:
             break
-        print("                                                       ")
-        print("-------------------------------------------------------")
-
+    print("                                                       ")
+    print("-------------------------------------------------------")
     print("Aurevoir...")
 
 

@@ -64,7 +64,7 @@ Les programmes/logiciels/ressources utilisé pour développer le projet
 
 
 ## Auteurs
-Listez le(s) auteur(s) du projet ici !
+auteur(s) du projet 
 * **Ouafi MAMERI** _WAFI_ [mameri.wafi@gmail.com](https://github.com/wafistos1/Projet5)
 
 
