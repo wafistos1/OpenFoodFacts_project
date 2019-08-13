@@ -38,6 +38,7 @@ Ce qu'il est requis pour commencer avec votre projet...
 
 - Installer Python3 
 - Installer les dependances avec le fichier `requirements.txt`
+- Entrer le `USER` et `PASSWORD` de ta base de donnees SQL dans le   fichier`constants.py` 
 
 ## Démarrage
 
@@ -45,7 +46,7 @@ Pour lancer votre projet
  
 - Taper dans un terminal `python3 main.py` 
 
-## Les different options du script(modification et personnalisation)
+## Les differents options du script(modification et personnalisation)
 
 - Utilisateur pourra si il le veut personnaliser le programme.   
 voici toutes les fonctionnalites personnalisable  
