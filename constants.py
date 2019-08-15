@@ -6,6 +6,7 @@ USER = 'root'
 PASSWORD = ''
 NUMBER_PRODUCT_PAGE = 50
 NUMBER_VAFORITE_PAGE = 20
+NUMBER_VAFORITE = 10
 CLEAR = 'clear'
 
 
@@ -52,7 +53,7 @@ def menu_main():
     print("-------------------------------------------------------")
     print("1- Afficher Favoris( Retrouver mes aliments substitués)")
     print("2- Rechercher un produit( Quel aliment souhaitez-vous remplacer?)")
-    print("3- Update ma base de donnees")
+    print("3- Update ma base de donnees(une fois par semaine)")
     print("4- Quitter")
     print("-------------------------------------------------------")
     print("-------------------------------------------------------")
@@ -74,4 +75,4 @@ def menu_choice_product():
     print("4- Petit-déjeuners")
     print("5- Plats préparés")
     print("6- Produits à tartiner")
-    print("'Q'- Sortir du menu")
+    print("'Q'- pour sortir du menu")

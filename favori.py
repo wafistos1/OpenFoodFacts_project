@@ -2,6 +2,7 @@
 the database and can display them
 """
 from database import my_cursor, connexion
+from constants import NUMBER_VAFORITE
 
 class Favorite:
     """Favorite class that inserts the selected products into
@@ -33,5 +34,6 @@ class Favorite:
             print(f"{i+1}-{name[1].upper()} son substitut est: {name[2].upper()}")
             print(f"De grade {name[4].upper()}")
             print('-------------------------------------------------------------')
-
+            if i % NUMBER_VAFORITE == 0 and i != 0:
+                input("\nAppuyer sur une touche pour continue")
         connexion.commit()
