@@ -1,7 +1,9 @@
 """Class product of table with same name
 """
 from database import my_cursor
-from constants import validate_entering, NUMBER_PRODUCT_PAGE, NUMBER_VAFORITE_PAGE
+from constants import NUMBER_PRODUCT_PAGE, NUMBER_VAFORITE_PAGE, CLEAR
+from fonctions import validate_entering
+import os
 
 class Product:
     """Class that represents the Product table
@@ -29,10 +31,12 @@ class Product:
             self.list_posting.append(name)
             print(f"{i+1}-{self.list_posting[i][0]}")
             if i % NUMBER_PRODUCT_PAGE == 0 and i != 0: # Display 50 products at a time
-                key = input("\nAppuyer sur n'importe quelle touche les suivants ").capitalize()
+                key = input("\nAppuyer sur n'importe quelle touche les suivants \
+                \nQ si vous avez tourvez votre choix ").capitalize()
                 if key == 'Q':
                     break
         self.choice_product = validate_entering(1, len(self.list_posting))
+        os.system(CLEAR)
         print("-------------------------------------------------------")
         print(f"Vous avez choisie {self.list_posting[self.choice_product-1][0].upper()} \
             grade: {self.list_posting[self.choice_product-2][1].upper()}")
@@ -66,6 +70,7 @@ class Product:
             # Boucle for choice user
             print("-------------------------------------------------------")
             self.choice_subs = validate_entering(1, len(self.list_choice))
+            os.system(CLEAR)
             print("-------------------------------------------------------")
             print("Vous produit substitue est: ")
             print("-------------------------------------------------------")

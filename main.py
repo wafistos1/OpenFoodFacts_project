@@ -2,20 +2,21 @@
 """
 import os
 from sql import check_database, data_init
-from constants import validate_entering, menu_main, CLEAR
-from fonctions import favorite_poster, product_poster, update_data, quitter
+from constants import CLEAR
+from fonctions import validate_entering, menu_main
+from choice import Choice_menu 
+import platform
+
+
 def main():
     """ main fonction to start a script
     """
-    # Initialisation our data (upload json file from api)
+    platform.system()
+    # Initialisation data (upload json file from api)
     if check_database():
         data_init()
     #Check os system
-    print("Votre systeme operationnel")
-    print("1- Linux ou Mac")
-    print("2- Windows")
-    CLEAR = validate_entering(1, 2)
-    if CLEAR == 1:
+    if platform.system() == 'Linux' or platform.system() == '':
         CLEAR = 'clear'
     else:
         CLEAR = 'cls'
@@ -26,10 +27,10 @@ def main():
         menu_main()
         index = None
         switcher = {
-            1: favorite_poster,
-            2: product_poster,
-            3: update_data,
-            4: quitter
+            1: Choice_menu.favorite_poster,
+            2: Choice_menu.product_poster,
+            3: Choice_menu.update_data,
+            4: Choice_menu.quitter
             }
         index = validate_entering(1, 4)
         switcher[index]()

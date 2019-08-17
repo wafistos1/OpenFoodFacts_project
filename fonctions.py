@@ -1,83 +1,69 @@
 """Modul of All fonctions
 """
-import os
-from product import Product
-from favori import Favorite
-from sql import data_init
-from constants import validate_entering, yes_no, menu_choice_product, CLEAR
 
-
-def favorite_poster():
-    """function that displays favorites in the database
+def validate_entering(start, end):
+    """Function that verifies that the user enters an integer between
+    a defined interval
     """
-    os.system(CLEAR)
-    print("****                 Favoris               ****")
-    print("****                                       ****")
-    print("-----------------------------------------------")
-    favorite1 = Favorite()
-    favorite1.get_all()
-    input()
+    index = None
+    while True:
+        try:
+            index = int(input('Entrez votre choix: '))
+            assert start <= index <= end
+        except ValueError:
+            print('SVP entrez un entier valide')
+        except AssertionError:
+            print(f"SVP entrez un entier entre [{start}-{end}]")
+        else:
+            break
+
+    return index
 
 
-def product_poster():
-    """function that displays the products of a category in the database
+def yes_no():
+    """Function that allows to check that the user enters'Oui' or'Non'
     """
-    os.system(CLEAR)
-    menu_choice_product()
-    print("                                                       ")
-    print("-------------------------------------------------------")
-    index_choice = None
-    index_choice = validate_entering(1, 6)
-    produit = Product()
-    print("-------------------------------------------------------")
-    print("                                                       ")
-    print("Liste des produits disponibles")
-    print("                                                       ")
-    print("-------------------------------------------------------")
-    produit.get_product(index_choice)
-    print("                                                       ")
-    print("-------------------------------------------------------")
-    os.system(CLEAR)
-    print("-------------------------------------------------------")
-    produit.search_product(index_choice)
-    print("=======================================================")
-    print("Voulez vous sauvgarde ce produit? (Oui/Non)")
-    print("                                                       ")
-    reponse = yes_no()
-    if reponse == 'Oui' and produit.list_choice != []:
-        favorite = Favorite()
-        favorite.insert_data(
-            produit.list_favorite[1][0],
-            produit.list_favorite[0][1],
-            produit.list_favorite[0][2],
-            produit.list_favorite[0][3],
-        )
-        print("Produit enregiste aux Favoris")
-
-    elif reponse == 'Oui' and produit.list_choice == []:
-        favorite = Favorite()
-        favorite.insert_data(
-            produit.list_favorite[0][0],
-            produit.list_favorite[0][0],
-            'none',
-            produit.list_favorite[0][1],
-        )
-        print("Produit enregiste aux Favoris")
-    else:
-        print("Produit non-enregiste aux Favoris")
-    input()
+    index = None
+    while index not in ['Oui', 'Non']:
+        try:
+            index = str(input('Entrez votre choix:(Oui/Non) ').capitalize())
+        except ValueError:
+            print('SVP entrez un mot valide')
+    return index
 
 
-def update_data():
-    """Update my database
+def menu_main():
+    """Function to display the main menu
     """
-    data_init()
-    print("Mise a jours terminer")
-    input()
+    print("-------------------------------------------------------")
+    print("-------------------------------------------------------")
+    print("****                                               ****")
+    print("****   Bienvenue dans le programme OPENFOOD        ****")
+    print("****                                               ****")
+    print("-------------------------------------------------------")
+    print("-------------------------------------------------------")
+    print("1- Afficher Favoris( Retrouver mes aliments substitués)")
+    print("2- Rechercher un produit( Quel aliment souhaitez-vous remplacer?)")
+    print("3- Update ma base de donnees(une fois par semaine)")
+    print("4- Quitter")
+    print("-------------------------------------------------------")
+    print("-------------------------------------------------------")
 
 
-def quitter():
-    """function to exit the program
+def menu_choice_product():
+    """Function that allows to display the products in
+    the database according to the choice of the category
     """
-    print('Vous quitter le programme?')
+    print("-------------------------------------------------------")
+    print("****                                               ****")
+    print("****   Vous Cherchez un nouveau produit            ****")
+    print("****   Choisissez une categorie de produit         ****")
+    print("****                                               ****")
+    print("-------------------------------------------------------")
+    print("1- Boissons")
+    print("2- Produits laitiers")
+    print("3- biscuits")
+    print("4- Petit-déjeuners")
+    print("5- Plats préparés")
+    print("6- Produits à tartiner")
 
