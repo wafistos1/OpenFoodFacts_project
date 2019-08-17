@@ -34,7 +34,7 @@ le produit substitut dans la base de donnees
 
 ### Pré-requis
 
-Ce qu'il est requis pour commencer avec votre projet...
+Ce qu'il est requis pour commencer avec mon programme.
 
 - Installer Python3 
 - Installer les dependances avec le fichier `requirements.txt`
@@ -52,6 +52,9 @@ Pour lancer votre projet
 voici toutes les fonctionnalites personnalisable  
     * Affichage (nombre de produit a affiche)de la liste des produits       dans la categorie selectionnee en changeant la constante           
     `NUMBER_PRODUCT_PAGE`qui se trouve dans le fichier 
+    `constants.py`
+    * Affichage (nombre de substituts a affiche) en changeant la constante 
+    `NUMBER_VAFORITE_PAGE`qui se trouve dans le fichier 
     `constants.py`
     
 
