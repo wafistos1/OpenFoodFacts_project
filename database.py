@@ -22,6 +22,8 @@ my_cursor = connexion.cursor(buffered=True)
 json_data = None
 
 def upload_data(category, page):
+    """Loads the API data into a Json file and returns it
+    """
     api_search = 'https://world.openfoodfacts.org/cgi/search.pl?/get'
     payload = {
         'search_terms': '',

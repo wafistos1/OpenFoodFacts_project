@@ -1,18 +1,20 @@
-"""Module that groups the static methods of the main menu 
+"""Module that groups the static methods of the main menu
 """
 import os
 from product import Product
 from favori import Favorite
 from sql import data_init
-from constants import CLEAR
+from constants import clear
 from fonctions import validate_entering, yes_no, menu_choice_product
 
-class Choice_menu:
+class ChoiceMenu:
+    """static methods for menu selection
+    """
     @staticmethod
     def favorite_poster():
         """function that displays favorites in the database
         """
-        os.system(CLEAR)
+        os.system(clear)
         print("****                 Favoris               ****")
         print("****                                       ****")
         print("-----------------------------------------------")
@@ -25,7 +27,7 @@ class Choice_menu:
     def product_poster():
         """function that displays the products of a category in the database
         """
-        os.system(CLEAR)
+        os.system(clear)
         menu_choice_product()
         print("                                                       ")
         print("-------------------------------------------------------")
@@ -41,7 +43,7 @@ class Choice_menu:
         print("                                                       ")
         print("-------------------------------------------------------")
         print("***          Liste des produits substituts          ***")
-        #os.system(CLEAR)
+        #os.system(clear)
         print("-------------------------------------------------------")
         produit.search_product(index_choice)
         print("=======================================================")
@@ -84,4 +86,3 @@ class Choice_menu:
         """function to exit the program
         """
         print('Vous quitter le programme?')
-

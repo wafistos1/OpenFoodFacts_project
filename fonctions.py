@@ -66,4 +66,3 @@ def menu_choice_product():
     print("4- Petit-déjeuners")
     print("5- Plats préparés")
     print("6- Produits à tartiner")
-

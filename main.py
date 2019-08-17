@@ -1,11 +1,11 @@
 """ Script to .....
 """
 import os
-from sql import check_database, data_init
-from constants import CLEAR
-from fonctions import validate_entering, menu_main
-from choice import Choice_menu 
 import platform
+from sql import check_database, data_init
+from constants import clear
+from fonctions import validate_entering, menu_main
+from choice import ChoiceMenu
 
 
 def main():
@@ -17,20 +17,19 @@ def main():
         data_init()
     #Check os system
     if platform.system() == 'Linux' or platform.system() == '':
-        CLEAR = 'clear'
+        clear = 'clear'
     else:
-        CLEAR = 'cls'
-    
+        clear = 'cls'
     #Main loop
     while True:
-        os.system(CLEAR)
+        os.system(clear)
         menu_main()
         index = None
         switcher = {
-            1: Choice_menu.favorite_poster,
-            2: Choice_menu.product_poster,
-            3: Choice_menu.update_data,
-            4: Choice_menu.quitter
+            1: ChoiceMenu.favorite_poster,
+            2: ChoiceMenu.product_poster,
+            3: ChoiceMenu.update_data,
+            4: ChoiceMenu.quitter
             }
         index = validate_entering(1, 4)
         switcher[index]()

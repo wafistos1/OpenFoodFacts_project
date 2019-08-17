@@ -1,9 +1,9 @@
 """Class product of table with same name
 """
-from database import my_cursor
-from constants import NUMBER_PRODUCT_PAGE, NUMBER_VAFORITE_PAGE, CLEAR
-from fonctions import validate_entering
 import os
+from database import my_cursor
+from constants import NUMBER_PRODUCT_PAGE, NUMBER_VAFORITE_PAGE, clear
+from fonctions import validate_entering
 
 class Product:
     """Class that represents the Product table
@@ -36,7 +36,7 @@ class Product:
                 if key == 'Q':
                     break
         self.choice_product = validate_entering(1, len(self.list_posting))
-        os.system(CLEAR)
+        os.system(clear)
         print("-------------------------------------------------------")
         print(f"Vous avez choisie {self.list_posting[self.choice_product-1][0].upper()} \
             grade: {self.list_posting[self.choice_product-2][1].upper()}")
@@ -70,7 +70,7 @@ class Product:
             # Boucle for choice user
             print("-------------------------------------------------------")
             self.choice_subs = validate_entering(1, len(self.list_choice))
-            os.system(CLEAR)
+            os.system(clear)
             print("-------------------------------------------------------")
             print("Vous produit substitue est: ")
             print("-------------------------------------------------------")

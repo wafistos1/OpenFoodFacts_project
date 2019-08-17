@@ -135,4 +135,3 @@ def data_init():
         ]
         for i in data_categories:
             my_cursor.execute(query2, i)
-
