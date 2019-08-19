@@ -4,7 +4,7 @@
 _
 
 
-## Ce programme interagirait avec la base Open Food Facts pour en récupérer les aliments, les comparer et proposer à l'utilisateur un substitut plus sain à l'aliment qui lui fait envie.
+## Ce programme interagirait avec la base Open Food Facts pour en récupérer les aliments, les comparer et proposer à l'utilisateur un substitut plus sain.
 
 ## Pour commencer
 - Ce programme ce compose des elements suivants

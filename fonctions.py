@@ -1,6 +1,6 @@
 """Modul of All fonctions
 """
-
+from constants import data_categories
 def validate_entering(start, end):
     """Function that verifies that the user enters an integer between
     a defined interval
@@ -42,9 +42,9 @@ def menu_main():
     print("****                                               ****")
     print("-------------------------------------------------------")
     print("-------------------------------------------------------")
-    print("1- Afficher Favoris( Retrouver mes aliments substitués)")
+    print("1- Afficher les Favoris( Retrouver mes aliments substitués)")
     print("2- Rechercher un produit( Quel aliment souhaitez-vous remplacer?)")
-    print("3- Update ma base de donnees(une fois par semaine)")
+    print("3- Update la base de donnees(une fois par semaine)")
     print("4- Quitter")
     print("-------------------------------------------------------")
     print("-------------------------------------------------------")
@@ -60,9 +60,5 @@ def menu_choice_product():
     print("****   Choisissez une categorie de produit         ****")
     print("****                                               ****")
     print("-------------------------------------------------------")
-    print("1- Boissons")
-    print("2- Produits laitiers")
-    print("3- biscuits")
-    print("4- Petit-déjeuners")
-    print("5- Plats préparés")
-    print("6- Produits à tartiner")
+    for cle in data_categories:
+        print(f"{cle[0]}- {cle[1]}")

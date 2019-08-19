@@ -3,7 +3,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 from database import my_cursor, connexion, upload_data
-from constants import DATABASE_NAME
+from constants import DATABASE_NAME, data_categories
 
 
 TABLES = {}
@@ -85,13 +85,13 @@ def data_init():
             print("OK")
     # The categories of my table
     categoy_index = (
-        'Boissons',
-        'Produits laitiers',
-        'Biscuits',
-        'Petit-déjeuners',
-        'Plats préparés',
-        'Produits à tartiner'
-        )
+        data_categories[0][1],
+        data_categories[1][1],
+        data_categories[2][1],
+        data_categories[3][1],
+        data_categories[4][1],
+        data_categories[5][1],
+       )
     id_cat = 1
     # browse categories and insert data
     for index in categoy_index:
@@ -125,13 +125,5 @@ def data_init():
         query2 = (
             "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
             )
-        data_categories = [
-            (1, "Boissons"),
-            (2, 'Produits laitiers'),
-            (3, 'Biscuits'),
-            (4, 'Petit-déjeuners'),
-            (5, 'Plats préparés'),
-            (6, 'Produits à tartiner')
-        ]
         for i in data_categories:
             my_cursor.execute(query2, i)

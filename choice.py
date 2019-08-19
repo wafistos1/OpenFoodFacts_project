@@ -42,12 +42,12 @@ class ChoiceMenu:
         produit.get_product(index_choice)
         print("                                                       ")
         print("-------------------------------------------------------")
-        print("***          Liste des produits substituts          ***")
+        print("***          Liste des substituts          ***")
         #os.system(clear)
         print("-------------------------------------------------------")
         produit.search_product(index_choice)
         print("=======================================================")
-        print("Voulez vous sauvgarde ce produit? (Oui/Non)")
+        print("Voulez vous sauvgarder ce produit? (Oui/Non)")
         print("                                                       ")
         reponse = yes_no()
         if reponse == 'Oui' and produit.list_choice != []:
@@ -58,7 +58,7 @@ class ChoiceMenu:
                 produit.list_favorite[0][2],
                 produit.list_favorite[0][3],
             )
-            print("Produit enregiste aux Favoris")
+            print("Produit enregistre aux Favoris")
 
         elif reponse == 'Oui' and produit.list_choice == []:
             favorite = Favorite()
@@ -68,9 +68,10 @@ class ChoiceMenu:
                 'none',
                 produit.list_favorite[0][1],
             )
-            print("Produit enregiste aux Favoris")
+            print("Produit enregistre aux Favoris")
         else:
-            print("Produit non-enregiste aux Favoris")
+            print("Produit non-enregistre aux Favoris")
+        print("Appuyer sur une touche pour continuer")
         input()
 
     @staticmethod
@@ -85,4 +86,4 @@ class ChoiceMenu:
     def quitter():
         """function to exit the program
         """
-        print('Vous quitter le programme?')
+        print('Vous quittez le programme')
