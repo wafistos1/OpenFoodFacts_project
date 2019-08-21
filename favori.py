@@ -4,6 +4,7 @@ the database and can display them
 from database import my_cursor, connexion
 from constants import NUMBER_VAFORITE
 
+
 class Favorite:
     """Favorite class that inserts the selected products into
     the database and can display them

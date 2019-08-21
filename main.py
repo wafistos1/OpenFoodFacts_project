@@ -15,16 +15,12 @@ def main():
     # Initialisation data (upload json file from api)
     if check_database():
         data_init()
-    #Check os system
-    if platform.system() == 'Linux' or platform.system() == '':
-        clear = 'clear'
-    else:
-        clear = 'cls'
-    #Main loop
+
+    # Main loop
     while True:
+        print(clear)
         os.system(clear)
         menu_main()
-        index = None
         switcher = {
             1: ChoiceMenu.favorite_poster,
             2: ChoiceMenu.product_poster,

@@ -56,6 +56,10 @@ voici toutes les fonctionnalites personnalisable
     * Affichage (nombre de substituts a affiche) en changeant la constante 
     `NUMBER_VAFORITE_PAGE`qui se trouve dans le fichier 
     `constants.py`
+    * `NUMBER_PRODUCT`  Nombre de produits qu'on doit charger de l'API max 1000 produits
+    * `data_categories` Une listes des noms des categories a partir du quel vous voulez chercher des produits 
+        il suffit juste de modifiez ou ajouter une ou plusieurs nom de categories
+        par defaut il y'a six(06) categories. 
     
 
 ## Fabriqué avec

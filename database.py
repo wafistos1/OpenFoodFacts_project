@@ -4,7 +4,7 @@
 import requests
 import mysql.connector
 from mysql.connector import errorcode
-from constants import HOST, USER, PASSWORD
+from constants import HOST, USER, PASSWORD, NUMBER_PRODUCT
 
 # Creation a connexion to database
 try:
@@ -21,6 +21,7 @@ my_cursor = connexion.cursor(buffered=True)
 
 json_data = None
 
+
 def upload_data(category, page):
     """Loads the API data into a Json file and returns it
     """
@@ -28,10 +29,9 @@ def upload_data(category, page):
     payload = {
         'search_terms': '',
         'json': 1,
-        'page_size': 100,
+        'page_size': NUMBER_PRODUCT,
         'page': page,
         'categories': category
         }
     json_data = requests.get(api_search, params=payload).json()
-    #taille = len(json_data['products'])
     return json_data

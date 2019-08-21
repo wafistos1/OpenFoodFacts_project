@@ -7,6 +7,7 @@ from sql import data_init
 from constants import clear
 from fonctions import validate_entering, yes_no, menu_choice_product
 
+
 class ChoiceMenu:
     """static methods for menu selection
     """
@@ -21,7 +22,6 @@ class ChoiceMenu:
         favorite1 = Favorite()
         favorite1.get_all()
         input()
-
 
     @staticmethod
     def product_poster():
@@ -43,7 +43,6 @@ class ChoiceMenu:
         print("                                                       ")
         print("-------------------------------------------------------")
         print("***          Liste des substituts          ***")
-        #os.system(clear)
         print("-------------------------------------------------------")
         produit.search_product(index_choice)
         print("=======================================================")

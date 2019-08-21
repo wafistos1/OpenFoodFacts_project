@@ -5,6 +5,7 @@ from database import my_cursor
 from constants import NUMBER_PRODUCT_PAGE, NUMBER_VAFORITE_PAGE, clear
 from fonctions import validate_entering
 
+
 class Product:
     """Class that represents the Product table
     """
@@ -16,7 +17,6 @@ class Product:
         self.list_posting = []
         self.list_choice = []
         self.list_favorite = []
-
 
     def get_product(self, index):
         """ Method that displays the products of the category the user has chosen
@@ -41,7 +41,6 @@ class Product:
         print(f"Vous avez choisie {self.list_posting[self.choice_product-1][0].upper()} \
             grade: {self.list_posting[self.choice_product-2][1].upper()}")
         print("-------------------------------------------------------")
-
 
     def search_product(self, index_category):
         """ Method that displays substitus products

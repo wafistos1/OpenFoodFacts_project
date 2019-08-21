@@ -1,6 +1,8 @@
 """Modul of All fonctions
 """
 from constants import data_categories
+
+
 def validate_entering(start, end):
     """Function that verifies that the user enters an integer between
     a defined interval

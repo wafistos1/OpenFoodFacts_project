@@ -7,7 +7,7 @@ from constants import DATABASE_NAME, data_categories
 
 
 TABLES = {}
-#Create Products table (SQL REQUEST)
+# Create Products table (SQL REQUEST)
 TABLES['Product'] = (
     "CREATE TABLE `Product` ("
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
@@ -19,7 +19,8 @@ TABLES['Product'] = (
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
-#Create Category table (SQL REQUEST)
+
+# Create Category table (SQL REQUEST)
 TABLES['Category'] = (
     "CREATE TABLE `Category` ("
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
@@ -27,7 +28,7 @@ TABLES['Category'] = (
     "  PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
 
-#Create Favorite table (SQL REQUEST)
+# Create Favorite table (SQL REQUEST)
 TABLES['Favorite'] = (
     "CREATE TABLE `Favorite` ("
     "  `id` int(11) NOT NULL AUTO_INCREMENT,"
@@ -97,7 +98,6 @@ def data_init():
     for index in categoy_index:
         # Upload json file from api
         data_for_insert = upload_data(index, 1)
-
         # Insert data in Product table
         taille = len(data_for_insert['products'])
         print(taille)
@@ -106,7 +106,7 @@ def data_init():
             "(name, url, grade, id_category, store)"
             "VALUES (%s,  %s, %s, %s, %s)"
             )
-        #The loop that inserts the data into my tables
+        # The loop that inserts the data into my tables
         for i in range(taille):
             try:
                 store = data_for_insert['products'][i]['stores']
@@ -121,7 +121,7 @@ def data_init():
                 my_cursor.execute(add_Product, food_data_Product)
                 connexion.commit()
         id_cat += 1
-        #Insert 6 categories in my category table(manually)
+        # Insert 6 categories in my category table(manually)
         query2 = (
             "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
             )
