@@ -17,10 +17,10 @@ else:
 
 NUMBER_PRODUCT = 100
 data_categories = [
-            (1, "Boissons"),
-            (2, 'Produits laitiers'),
-            (3, 'Biscuits'),
-            (4, 'Petit-déjeuners'),
-            (5, 'Plats préparés'),
-            (6, 'Produits à tartiner')
-        ]
+    (1, 'Boissons'),
+    (2, 'Produits laitiers'),
+    (3, 'Biscuits'),
+    (4, 'Petit-déjeuners'),
+    (5, 'Plats préparés'),
+    (6, 'Produits à tartiner')
+]
