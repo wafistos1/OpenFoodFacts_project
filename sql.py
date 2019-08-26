@@ -68,7 +68,7 @@ def check_database():
         return False
 
 
-# Function that creates a database if it does not exist
+# Function that creates a tables
 def data_init():
     """Function that creates the different tables
     """
