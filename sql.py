@@ -100,7 +100,8 @@ def data_init():
         data_for_insert = upload_data(index, 1)
         # Insert data in Product table
         taille = len(data_for_insert['products'])
-        print(taille)
+        print(f'{index} - produits: {taille}')
+        input()
         add_Product = (
             "INSERT IGNORE INTO Product "
             "(name, url, grade, id_category, store)"
