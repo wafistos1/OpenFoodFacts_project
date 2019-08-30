@@ -53,7 +53,7 @@ class Product:
             "AND Category.id = %s "
             "ORDER BY Product.grade"
             )
-        index = self.list_posting[self.choice_product-1][1]
+        index = self.list_posting[self.choice_product-2][1]
         self.cursor.execute(query, (index, index_category))
         # Increamentation
         for i, name in enumerate(self.cursor):

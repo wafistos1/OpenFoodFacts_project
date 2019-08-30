@@ -22,5 +22,6 @@ data_categories = [
     (3, 'Biscuits'),
     (4, 'Petit-déjeuners'),
     (5, 'Plats préparés'),
-    (6, 'Produits à tartiner')
+    (6, 'Produits à tartiner'),
+    (7, 'Chocolats')
 ]

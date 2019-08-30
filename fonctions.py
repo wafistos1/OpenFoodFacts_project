@@ -64,3 +64,13 @@ def menu_choice_product():
     print("-------------------------------------------------------")
     for cle in data_categories:
         print(f"{cle[0]}- {cle[1]}")
+
+
+def menu_favorite():
+    """Function that display the favorite table
+    """
+    print("---------------------------------------------")
+    print("**** 1- Afficher les favoris?            ****")
+    print("**** 2- Supprimer tous les favoris?      ****")
+    print("****                                     ****")
+    print("---------------------------------------------")

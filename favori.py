@@ -12,16 +12,16 @@ class Favorite:
     def __init__(self):
         self.cursor = my_cursor
 
-    def insert_data(self, product_choice, product_substituted, url, grade):
+    def insert_data(self, product_choice, product_substituted, url, grade, id_substitute):
         """Add the DATA in the favorite table
         """
         add_favorite = (
             "INSERT INTO `Favorite`"
-            "(`product`, `substitute`, `lien`, `grade`)"
-            " VALUE (%s, %s, %s, %s)"
+            "(`product`, `substitute`, `lien`, `grade`, `id_product_substitute`)"
+            " VALUE (%s, %s, %s, %s, %s)"
             )
         data_field = (
-            product_choice, product_substituted, url, grade,
+            product_choice, product_substituted, url, grade, id_substitute
         )
         self.cursor.execute(add_favorite, data_field)
         connexion.commit()
@@ -37,4 +37,14 @@ class Favorite:
             print('-------------------------------------------------------------')
             if i % NUMBER_VAFORITE == 0 and i != 0:
                 input("\nAppuyer sur une touche pour continue")
+        connexion.commit()
+
+    def empty_favorite(self):
+        """
+        Method that delete product substitute in table favorite
+        """
+        query = (
+            " truncate `Favorite`"
+            )
+        self.cursor.execute(query)
         connexion.commit()

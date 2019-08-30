@@ -7,26 +7,30 @@ from constants import DATABASE_NAME, data_categories
 
 
 TABLES = {}
-# Create Products table (SQL REQUEST)
-TABLES['Product'] = (
-    "CREATE TABLE `Product` ("
-    "  `id` int(11) NOT NULL AUTO_INCREMENT,"
-    "  `name` varchar(450) NOT NULL UNIQUE,"
-    "  `url` varchar(450) NOT NULL,"
-    "  `grade` varchar(40) ,"
-    "  `id_category` int(40) ,"
-    "  `store` varchar(540) ,"
-    "  PRIMARY KEY (`id`)"
-    ") ENGINE=InnoDB")
-
 
 # Create Category table (SQL REQUEST)
 TABLES['Category'] = (
     "CREATE TABLE `Category` ("
-    "  `id` int(11) NOT NULL AUTO_INCREMENT,"
-    "  `name` varchar(450) NOT NULL,"
-    "  PRIMARY KEY (`id`)"
+    "   `id` SMALLINT NOT NULL AUTO_INCREMENT,"
+    "   `name` varchar(450) NOT NULL,"
+    "   PRIMARY KEY (`id`)"
     ") ENGINE=InnoDB")
+
+# Create Products table (SQL REQUEST)
+TABLES['Product'] = (
+    "CREATE TABLE `Product` ("
+    "  `id` SMALLINT NOT NULL AUTO_INCREMENT,"
+    "  `name` varchar(450) NOT NULL UNIQUE,"
+    "  `url` varchar(450) NOT NULL,"
+    "  `grade` varchar(40) ,"
+    "  `id_category` SMALLINT NOT NULL ,"
+    "  `store` varchar(540) ,"
+    "  PRIMARY KEY (`id`),"
+    "   CONSTRAINT  `fk_category_id` FOREIGN KEY (`id_category`)"
+    "   REFERENCES `Category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE"
+
+    ") ENGINE=InnoDB")
+
 
 # Create Favorite table (SQL REQUEST)
 TABLES['Favorite'] = (
@@ -36,7 +40,10 @@ TABLES['Favorite'] = (
     "   `substitute` varchar(450) NOT NULL,"
     "   `lien` varchar(450) NOT NULL,"
     "   `grade` varchar(4) NOT NULL,"
-    "  PRIMARY KEY (`id`)"
+    "   `id_product_substitute` SMALLINT NOT NULL,"
+    "  PRIMARY KEY (`id`),"
+    "   CONSTRAINT  `fk_favorite_id` FOREIGN KEY (`id_product_substitute`)"
+    "   REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE"
     ") ENGINE=InnoDB")
 
 
@@ -85,23 +92,28 @@ def data_init():
         else:
             print("OK")
     # The categories of my table
-    categoy_index = (
-        data_categories[0][1],
-        data_categories[1][1],
-        data_categories[2][1],
-        data_categories[3][1],
-        data_categories[4][1],
-        data_categories[5][1],
-       )
-    id_cat = 1
+    categoy_index = []
+
+    for item in data_categories:
+        categoy_index.append(item[1])
+
+    categoy_index = tuple(categoy_index)
+
+    # Insert 6 categories in my category table(manually)
+    query2 = (
+        "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
+        )
+    for i in data_categories:
+        my_cursor.execute(query2, (i[0], i[1]))
+        connexion.commit()
+
     # browse categories and insert data
-    for index in categoy_index:
+    for index in range(len(categoy_index)):
         # Upload json file from api
-        data_for_insert = upload_data(index, 1)
+        data_for_insert = upload_data(categoy_index[index], 1)
         # Insert data in Product table
         taille = len(data_for_insert['products'])
-        print(f'{index} - produits: {taille}')
-        input()
+        print(f'{categoy_index[index]} - produits: {taille}')
         add_Product = (
             "INSERT IGNORE INTO Product "
             "(name, url, grade, id_category, store)"
@@ -114,17 +126,10 @@ def data_init():
                 name = data_for_insert['products'][i]['product_name']
                 grade = data_for_insert['products'][i]['nutrition_grades_tags'][0]
                 url = data_for_insert['products'][i]['url']
-                id_category = id_cat
+                id_category = index+1
             except(KeyError, TypeError):
                 continue
             finally:
                 food_data_Product = (name, url, grade, id_category, store)
                 my_cursor.execute(add_Product, food_data_Product)
                 connexion.commit()
-        id_cat += 1
-        # Insert 6 categories in my category table(manually)
-        query2 = (
-            "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
-            )
-        for i in data_categories:
-            my_cursor.execute(query2, i)

@@ -5,7 +5,7 @@ from product import Product
 from favori import Favorite
 from sql import data_init
 from constants import clear
-from fonctions import validate_entering, yes_no, menu_choice_product
+from fonctions import validate_entering, yes_no, menu_choice_product, menu_favorite
 
 
 class ChoiceMenu:
@@ -16,11 +16,15 @@ class ChoiceMenu:
         """function that displays favorites in the database
         """
         os.system(clear)
-        print("****                 Favoris               ****")
-        print("****                                       ****")
-        print("-----------------------------------------------")
+        menu_favorite()
+        choice_user = int(input("entez un chiffre: "))
         favorite1 = Favorite()
-        favorite1.get_all()
+        if choice_user == 1:
+            favorite1.get_all()
+        else:
+            favorite1.empty_favorite()
+            print('Tous les favoris ont été supprimes')
+
         input()
 
     @staticmethod
@@ -56,6 +60,8 @@ class ChoiceMenu:
                 produit.list_favorite[0][1],
                 produit.list_favorite[0][2],
                 produit.list_favorite[0][3],
+                produit.list_favorite[0][0],
+
             )
             print("Produit enregistre aux Favoris")
 
@@ -66,6 +72,8 @@ class ChoiceMenu:
                 produit.list_favorite[0][0],
                 'none',
                 produit.list_favorite[0][1],
+                produit.list_favorite[0][0],
+
             )
             print("Produit enregistre aux Favoris")
         else:
