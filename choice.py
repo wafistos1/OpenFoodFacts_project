@@ -1,31 +1,30 @@
 """Module that groups the static methods of the main menu
 """
 import os
-from product import Product
-from favori import Favorite
 from sql import data_init
-from constants import clear
-from fonctions import validate_entering, yes_no, menu_choice_product, menu_favorite
+from fonctions import validate_entering, menu_choice_product, menu_favorite
+from constants import clear, data_categories
+from app import App
 
 
 class ChoiceMenu:
     """static methods for menu selection
     """
+    list_product_categories = []
+    list_best_product_grade = []
+    grade_product_choice = None
+    index_category = None
+    index_grade = None
+
     @staticmethod
     def favorite_poster():
         """function that displays favorites in the database
         """
         os.system(clear)
         menu_favorite()
-        choice_user = int(input("entez un chiffre: "))
-        favorite1 = Favorite()
-        if choice_user == 1:
-            favorite1.get_all()
-        else:
-            favorite1.empty_favorite()
-            print('Tous les favoris ont été supprimes')
-
-        input()
+        app = App()
+        app.afficher_favorite()
+        input("\nAppuyer sur une touche pour continue")
 
     @staticmethod
     def product_poster():
@@ -33,61 +32,61 @@ class ChoiceMenu:
         """
         os.system(clear)
         menu_choice_product()
-        print("                                                       ")
         print("-------------------------------------------------------")
-        index_choice = None
-        index_choice = validate_entering(1, 6)
-        produit = Product()
+        index_category = validate_entering(1, len(data_categories))
+        app = App()
         print("-------------------------------------------------------")
-        print("                                                       ")
         print("Liste des produits disponibles")
         print("                                                       ")
-        print("-------------------------------------------------------")
-        produit.get_product(index_choice)
-        print("                                                       ")
+        product_choice = app.afficher_produit_categorie(index_category)
+        grade = product_choice[1][2]
         print("-------------------------------------------------------")
         print("***          Liste des substituts          ***")
         print("-------------------------------------------------------")
-        produit.search_product(index_choice)
-        print("=======================================================")
-        print("Voulez vous sauvgarder ce produit? (Oui/Non)")
-        print("                                                       ")
-        reponse = yes_no()
-        if reponse == 'Oui' and produit.list_choice != []:
-            favorite = Favorite()
-            favorite.insert_data(
-                produit.list_favorite[1][0],
-                produit.list_favorite[0][1],
-                produit.list_favorite[0][2],
-                produit.list_favorite[0][3],
-                produit.list_favorite[0][0],
-
+        list_best_product_grade = app.afficher_best_product(grade, index_category)
+        if not list_best_product_grade:
+            print('Votre produit a le meilleur grade dans la base de donnees')
+            app.enregister_produit_substitut(
+                product_choice[1][1],
+                product_choice[1][1],
+                product_choice[1][3],
+                product_choice[1][2],
+                product_choice[1][0]
             )
-            print("Produit enregistre aux Favoris")
-
-        elif reponse == 'Oui' and produit.list_choice == []:
-            favorite = Favorite()
-            favorite.insert_data(
-                produit.list_favorite[0][0],
-                produit.list_favorite[0][0],
-                'none',
-                produit.list_favorite[0][1],
-                produit.list_favorite[0][0],
-
-            )
-            print("Produit enregistre aux Favoris")
+            input("\nTapez sur une touche pour continuez")
         else:
-            print("Produit non-enregistre aux Favoris")
-        print("Appuyer sur une touche pour continuer")
-        input()
-
+            print("-------------------------------------------------------")
+            choice_subs = validate_entering(1, len(list_best_product_grade))
+            os.system(clear)
+            print("=======================================================")
+            print("Votre produit substitut est: ")
+            print(f"{list_best_product_grade[choice_subs][1][1]}")
+            print("Grade", end=' ')
+            print(f"{list_best_product_grade[choice_subs][1][3]}")
+            if list_best_product_grade[choice_subs][1][5] is not None:
+                print("-------------------------------------------------------")
+                print(f"Disponibles dans le.s magasin.s suivants: ")
+                print(f"{list_best_product_grade[choice_subs][1][5]}  ")
+            print("-------------------------------------------------------")
+            print("Lien Url")
+            print("-------------------------------------------------------")
+            print(f"{list_best_product_grade[choice_subs][1][2]}")
+            print("-------------------------------------------------------")
+            app.enregister_produit_substitut(
+                product_choice[1][1],
+                list_best_product_grade[choice_subs][1][1],
+                list_best_product_grade[choice_subs][1][2],
+                list_best_product_grade[choice_subs][1][3],
+                list_best_product_grade[choice_subs][1][0]
+            )
+            input("\nTapez sur une touche pour continuez")
     @staticmethod
     def update_data():
         """Update my database
         """
         data_init()
         print("Mise a jour terminee")
-        input()
+        input("\nTapez sur une touche pour continuez")
 
     @staticmethod
     def quitter():

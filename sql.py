@@ -2,49 +2,14 @@
 """
 import mysql.connector
 from mysql.connector import errorcode
+from category import Category
+from product import Product
+from favori import Favorite
 from database import my_cursor, connexion, upload_data
 from constants import DATABASE_NAME, data_categories
 
 
-TABLES = {}
-
-# Create Category table (SQL REQUEST)
-TABLES['Category'] = (
-    "CREATE TABLE `Category` ("
-    "   `id` SMALLINT NOT NULL AUTO_INCREMENT,"
-    "   `name` varchar(450) NOT NULL,"
-    "   PRIMARY KEY (`id`)"
-    ") ENGINE=InnoDB")
-
-# Create Products table (SQL REQUEST)
-TABLES['Product'] = (
-    "CREATE TABLE `Product` ("
-    "  `id` SMALLINT NOT NULL AUTO_INCREMENT,"
-    "  `name` varchar(450) NOT NULL UNIQUE,"
-    "  `url` varchar(450) NOT NULL,"
-    "  `grade` varchar(40) ,"
-    "  `id_category` SMALLINT NOT NULL ,"
-    "  `store` varchar(540) ,"
-    "  PRIMARY KEY (`id`),"
-    "   CONSTRAINT  `fk_category_id` FOREIGN KEY (`id_category`)"
-    "   REFERENCES `Category` (`id`) ON DELETE CASCADE ON UPDATE CASCADE"
-
-    ") ENGINE=InnoDB")
-
-
-# Create Favorite table (SQL REQUEST)
-TABLES['Favorite'] = (
-    "CREATE TABLE `Favorite` ("
-    "  `id` int(11) NOT NULL AUTO_INCREMENT,"
-    "   `product` varchar(450) NOT NULL,"
-    "   `substitute` varchar(450) NOT NULL,"
-    "   `lien` varchar(450) NOT NULL,"
-    "   `grade` varchar(4) NOT NULL,"
-    "   `id_product_substitute` SMALLINT NOT NULL,"
-    "  PRIMARY KEY (`id`),"
-    "   CONSTRAINT  `fk_favorite_id` FOREIGN KEY (`id_product_substitute`)"
-    "   REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE"
-    ") ENGINE=InnoDB")
+TABLES = {} # miniscule
 
 
 # definition of the function that creates the database
@@ -79,6 +44,16 @@ def check_database():
 def data_init():
     """Function that creates the different tables
     """
+    # Create Category table (SQL REQUEST)
+    categorie = Category()
+    product = Product()
+    favorite = Favorite()
+    TABLES = {
+        'Category': categorie.create(),
+        'Product': product.create(),
+        'Favorite': favorite.create()
+    }
+    # Create all table of DB
     for table_name in TABLES:
         table_description = TABLES[table_name]
         try:
@@ -90,35 +65,24 @@ def data_init():
             else:
                 print(err.msg)
         else:
-            print("OK")
-    # The categories of my table
-    categoy_index = []
 
+            print("OK")
+
+    # Insert 6 categories in my category table(manually)
+    categorie.insert_data()
+    # The categories of my table
+    categoy_index = list()
     for item in data_categories:
         categoy_index.append(item[1])
 
-    categoy_index = tuple(categoy_index)
-
-    # Insert 6 categories in my category table(manually)
-    query2 = (
-        "INSERT IGNORE INTO Category (id, name) VALUE (%s, %s)"
-        )
-    for i in data_categories:
-        my_cursor.execute(query2, (i[0], i[1]))
-        connexion.commit()
-
-    # browse categories and insert data
-    for index in range(len(categoy_index)):
+        # browse categories and insert data
+    for index in enumerate(categoy_index):
         # Upload json file from api
-        data_for_insert = upload_data(categoy_index[index], 1)
+        data_for_insert = upload_data(index[1], 1)
         # Insert data in Product table
         taille = len(data_for_insert['products'])
-        print(f'{categoy_index[index]} - produits: {taille}')
-        add_Product = (
-            "INSERT IGNORE INTO Product "
-            "(name, url, grade, id_category, store)"
-            "VALUES (%s,  %s, %s, %s, %s)"
-            )
+        print(f'{index[1]} - produits: {taille}')
+
         # The loop that inserts the data into my tables
         for i in range(taille):
             try:
@@ -126,10 +90,8 @@ def data_init():
                 name = data_for_insert['products'][i]['product_name']
                 grade = data_for_insert['products'][i]['nutrition_grades_tags'][0]
                 url = data_for_insert['products'][i]['url']
-                id_category = index+1
+                id_category = index[0] + 1
             except(KeyError, TypeError):
                 continue
             finally:
-                food_data_Product = (name, url, grade, id_category, store)
-                my_cursor.execute(add_Product, food_data_Product)
-                connexion.commit()
+                product.insert_data(name, url, grade, id_category, store)
