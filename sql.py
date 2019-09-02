@@ -9,7 +9,7 @@ from database import my_cursor, connexion, upload_data
 from constants import DATABASE_NAME, data_categories
 
 
-TABLES = {}  # miniscule
+tables = {}  # miniscule
 
 
 # definition of the function that creates the database
@@ -48,14 +48,14 @@ def data_init():
     categorie = Category()
     product = Product()
     favorite = Favorite()
-    TABLES = {
+    tables = {
         'Category': categorie.create(),
         'Product': product.create(),
         'Favorite': favorite.create()
     }
     # Create all table of DB
-    for table_name in TABLES:
-        table_description = TABLES[table_name]
+    for table_name in tables:
+        table_description = tables[table_name]
         try:
             print(f"Creating table {table_name}: ", end='')
             my_cursor.execute(table_description)

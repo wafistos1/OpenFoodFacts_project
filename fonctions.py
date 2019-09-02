@@ -110,6 +110,11 @@ def browse_favorite(number_favorite, list_favorite):
 
 
 def menu_save():
+    """
+    display menu for save_product_substitute method of class App
+    :return:
+    """
+
     print("=======================================================")
     print("Voulez vous sauvgarder ce produit? (Oui/Non)")
     print("=======================================================")

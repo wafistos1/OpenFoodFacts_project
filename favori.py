@@ -26,7 +26,7 @@ class Favorite:
             "   `id_product` SMALLINT NOT NULL,"
             "  PRIMARY KEY (`id`),"
             "   CONSTRAINT  `fk_favorite_id` FOREIGN KEY (`id_product_substitute`)"
-            "   REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,"            
+            "   REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,"
             "   CONSTRAINT  `fk_product_id` FOREIGN KEY (`id_product`)"
             "   REFERENCES `Product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE"
             ") ENGINE=InnoDB"
@@ -42,8 +42,8 @@ class Favorite:
             "(`product`,  `substitute`, `id_product_substitute`, `id_product`)"
             " VALUE (%s, %s, %s, %s)"
             )
-
-        self.cursor.execute(add_favorite, (product_choice, product_substituted, id_product_substitute, id_product))
+        data_field = (product_choice, product_substituted, id_product_substitute, id_product)
+        self.cursor.execute(add_favorite, data_field)
         connexion.commit()
 
     def get_all(self):
