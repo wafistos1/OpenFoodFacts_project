@@ -103,7 +103,14 @@ def browse_favorite(number_favorite, list_favorite):
     print("=============================================================")
 
     for i, name in enumerate(list_favorite):
-        print(f"{i + 1}-PRODUIT:{name[1][1]} \n-SUBSTITUT:{name[1][2]}\n-GRADE:{name[1][4]} ")
+        print(f"{i + 1}-PRODUIT:{name[1][1]} \n-SUBSTITUT:{name[1][2]} ")
         print("---------------------------------------------------------")
         if i % number_favorite == 0 and i != 0:
             input("\nAppuyer sur une touche pour continue")
+
+
+def menu_save():
+    print("=======================================================")
+    print("Voulez vous sauvgarder ce produit? (Oui/Non)")
+    print("=======================================================")
+    print("                                                        ")

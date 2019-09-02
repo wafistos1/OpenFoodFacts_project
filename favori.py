@@ -34,18 +34,16 @@ class Favorite:
         self.cursor.execute(query)
         connexion.commit()
 
-    def insert_data(self, product_choice, product_substituted, url, grade, id_substitute):
+    def insert_data(self, product_choice, product_substituted, id_product_substitute, id_product):
         """Add the DATA in the favorite table
         """
         add_favorite = (
             "INSERT INTO `Favorite`"
-            "(`product`, `substitute`, `lien`, `grade`, `id_product_substitute`)"
-            " VALUE (%s, %s, %s, %s, %s)"
+            "(`product`,  `substitute`, `id_product_substitute`, `id_product`)"
+            " VALUE (%s, %s, %s, %s)"
             )
-        data_field = (
-            product_choice, product_substituted, url, grade, id_substitute
-        )
-        self.cursor.execute(add_favorite, data_field)
+
+        self.cursor.execute(add_favorite, (product_choice, product_substituted, id_product_substitute, id_product))
         connexion.commit()
 
     def get_all(self):

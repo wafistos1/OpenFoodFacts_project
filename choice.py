@@ -23,7 +23,7 @@ class ChoiceMenu:
         os.system(clear)
         menu_favorite()
         app = App()
-        app.afficher_favorite()
+        app.display_favorite()
         input("\nAppuyer sur une touche pour continue")
 
     @staticmethod
@@ -38,22 +38,20 @@ class ChoiceMenu:
         print("-------------------------------------------------------")
         print("Liste des produits disponibles")
         print("                                                       ")
-        product_choice = app.afficher_produit_categorie(index_category)
+        product_choice = app.display_product_category(index_category)
         grade = product_choice[1][2]
         print("-------------------------------------------------------")
         print("***          Liste des substituts          ***")
         print("-------------------------------------------------------")
-        list_best_product_grade = app.afficher_best_product(grade, index_category)
+        list_best_product_grade = app.display_best_product(grade, index_category)
         if not list_best_product_grade:
             print('Votre produit a le meilleur grade dans la base de donnees')
-            app.enregister_produit_substitut(
+            app.save_product_substitute(
                 product_choice[1][1],
                 product_choice[1][1],
-                product_choice[1][3],
-                product_choice[1][2],
-                product_choice[1][0]
+                product_choice[1][0],
+                product_choice[1][0],
             )
-            input("\nTapez sur une touche pour continuez")
         else:
             print("-------------------------------------------------------")
             choice_subs = validate_entering(1, len(list_best_product_grade))
@@ -72,14 +70,13 @@ class ChoiceMenu:
             print("-------------------------------------------------------")
             print(f"{list_best_product_grade[choice_subs][1][2]}")
             print("-------------------------------------------------------")
-            app.enregister_produit_substitut(
+            print(list_best_product_grade[choice_subs][1][0])
+            app.save_product_substitute(
                 product_choice[1][1],
                 list_best_product_grade[choice_subs][1][1],
-                list_best_product_grade[choice_subs][1][2],
-                list_best_product_grade[choice_subs][1][3],
-                list_best_product_grade[choice_subs][1][0]
+                list_best_product_grade[choice_subs][1][0],
+                product_choice[1][0],
             )
-            input("\nTapez sur une touche pour continuez")
     @staticmethod
     def update_data():
         """Update my database

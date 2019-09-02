@@ -9,7 +9,7 @@ from database import my_cursor, connexion, upload_data
 from constants import DATABASE_NAME, data_categories
 
 
-TABLES = {} # miniscule
+TABLES = {}  # miniscule
 
 
 # definition of the function that creates the database
