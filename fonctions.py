@@ -119,3 +119,9 @@ def menu_save():
     print("Voulez vous sauvgarder ce produit? (Oui/Non)")
     print("=======================================================")
     print("                                                        ")
+
+
+def exit_menu():
+    print("                                                       ")
+    print("-------------------------------------------------------")
+    print("Aurevoir...")

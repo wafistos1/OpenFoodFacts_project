@@ -4,7 +4,7 @@ import os
 import platform
 from sql import check_database, data_init
 from constants import clear
-from fonctions import validate_entering, menu_main
+from fonctions import validate_entering, menu_main, exit_menu
 from choice import ChoiceMenu
 
 
@@ -31,9 +31,7 @@ def main():
         switcher[index]()
         if index == 4:
             break
-    print("                                                       ")
-    print("-------------------------------------------------------")
-    print("Aurevoir...")
+    exit_menu()
 
 
 if __name__ == "__main__":
