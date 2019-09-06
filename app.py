@@ -15,6 +15,7 @@ class App:
     def __init__(self):
         self.user_choice = None
         self.reponse = None
+        self.produit = Product()
 
     def display_favorite(self):
         """function that displays favorites in the database
@@ -29,14 +30,13 @@ class App:
         else:
             favorite1.empty_favorite()
             print('Tous les favoris ont été supprimes')
-            input("\nAppuyer sur une touche pour continue")
+            os.system('pause')
 
     def display_product_category(self, index_category): # changer le nom de la methode
         """function that displays the products of a category in the database
         :return List of products in relation to the choice of a category
         """""
-        produit = Product()
-        list_product_categories = produit.get_product(index_category)
+        list_product_categories = self.produit.get_product(index_category)
         browse_list(NUMBER_PRODUCT_PAGE, list_product_categories)
         self.user_choice = validate_entering(1, len(list_product_categories))
         os.system(clear)
@@ -49,8 +49,7 @@ class App:
         """Method that selects better quality products in relation to a product chosen by the user
         :return List of products best quality products
         """""
-        produit = Product()
-        list_best_product_grade = produit.search_product(grade, category)
+        list_best_product_grade = self.produit.search_product(grade, category)
         browse_list(NUMBER_VAFORITE_PAGE, list_best_product_grade)
         return list_best_product_grade
 
@@ -79,5 +78,4 @@ class App:
                 id_product
             )
         print("Produit enregistre aux Favoris")
-        print("Appuyer sur une touche pour continuer")
-        input()
+        os.system('pause')

@@ -1,5 +1,6 @@
 """Modul of All fonctions
 """
+import os
 from constants import data_categories
 
 
@@ -106,7 +107,7 @@ def browse_favorite(number_favorite, list_favorite):
         print(f"{i + 1}-PRODUIT:{name[1][1]} \n-SUBSTITUT:{name[1][2]} ")
         print("---------------------------------------------------------")
         if i % number_favorite == 0 and i != 0:
-            input("\nAppuyer sur une touche pour continue")
+            os.system('pause')
 
 
 def menu_save():

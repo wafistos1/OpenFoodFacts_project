@@ -83,7 +83,7 @@ class ChoiceMenu:
         """
         data_init()
         print("Mise a jour terminee")
-        input("\nTapez sur une touche pour continuez")
+        os.system('pause')
 
     @staticmethod
     def quitter():
